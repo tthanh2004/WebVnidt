@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  role          String   @default("editor") // super_admin, admin, editor, dept_manager, viewer
+  mfaEnabled    Boolean  @default(false)
+  lastLogin     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  news          News[]
+  media         Media[]
+}
+
+model Page {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  content     String   // Will store JSON string
+  seoMetadata String?  // Will store JSON string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model News {
+  id          String   @id @default(uuid())
+  name        String   // Tên tin tức
+  slug        String   @unique // Đường dẫn độc nhất
+  description String   // Mô tả tin tức
+  status      String   @default("draft") // draft, published
+  publishedAt DateTime @default(now()) // Thời gian đăng
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  tag         String   // Nhãn phân loại nhập tay
+  name        String   // Tên dự án
+  description String   // Mô tả dự án
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Media {
+  id         String   @id @default(uuid())
+  fileName   String
+  fileUrl    String
+  mimeType   String
+  sizeBytes  Int
+  uploaderId String
+  uploader   User     @relation(fields: [uploaderId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model ContactRequest {
+  id           String   @id @default(uuid())
+  name         String
+  email        String
+  sector       String   // Lĩnh vực quan tâm (Bắt buộc)
+  message      String   // Nội dung yêu cầu (Bắt buộc)
+  phone        String?  // Số điện thoại (Tùy chọn)
+  organization String?  // Đơn vị tổ chức (Tùy chọn)
+  status       String   @default("new") // new, in_progress, closed
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

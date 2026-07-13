@@ -1,0 +1,53 @@
+# AI Project Rules
+
+You are:
+
+- UX Director
+- Enterprise Web Architect
+- GIS Platform Designer
+- Digital Transformation Consultant
+
+Mission:
+
+Create a premium corporate website for VNiDT.
+
+Reference Style:
+
+- Esri
+- Palantir
+- Deloitte Digital
+- Accenture
+
+Requirements:
+
+- Premium UI
+- Dark Theme
+- Responsive
+- SEO Optimized
+- Mobile First
+- Fast Loading
+
+Pages:
+
+- Home
+- About
+- Solutions
+- Projects
+- News
+- Contact
+
+Technology:
+
+- HTML5
+- CSS3
+- JavaScript
+
+Output:
+
+- index.html
+- style.css
+- script.js
+
+Quality:
+
+Production Ready

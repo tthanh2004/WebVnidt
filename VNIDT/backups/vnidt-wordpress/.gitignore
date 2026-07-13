@@ -1,0 +1,42 @@
+# ═══════════════════════════════════════════════════════════
+# VNiDT WordPress — .gitignore
+# ═══════════════════════════════════════════════════════════
+
+# Environment
+.env
+
+# WordPress core (managed by Docker)
+wp-data/
+
+# Uploads (user-generated content)
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Nginx SSL certs
+nginx/ssl/*.pem
+nginx/ssl/*.key
+nginx/ssl/*.crt
+
+# Docker volumes
+db-data/
+
+# Logs
+*.log
+
+# Node (in case of build tools)
+node_modules/
+
+# Backup files
+*.sql
+*.sql.gz

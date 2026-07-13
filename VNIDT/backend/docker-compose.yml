@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # ─── VNiDT Backend + Frontend ──────────────────────────────
+  vnidt-app:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    container_name: vnidt-app
+    restart: always
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=${JWT_SECRET:-vnidt-website-secret-key-2026-change-me}
+      - SMTP_USER=${SMTP_USER:-vnidt.jsc@gmail.com}
+      - SMTP_PASS=${SMTP_PASS:-your_app_password_here}
+      - PORT=3000
+    volumes:
+      - vnidt-data:/app/dev.db
+      - vnidt-uploads:/app/uploads
+      - vnidt-logs:/app/logs
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    networks:
+      - vnidt-network
+
+  # ─── Nginx Reverse Proxy ───────────────────────────────────
+  vnidt-nginx:
+    image: nginx:alpine
+    container_name: vnidt-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - vnidt-logs:/var/log/vnidt
+    depends_on:
+      vnidt-app:
+        condition: service_healthy
+    networks:
+      - vnidt-network
+
+volumes:
+  vnidt-data:
+    driver: local
+  vnidt-uploads:
+    driver: local
+  vnidt-logs:
+    driver: local
+
+networks:
+  vnidt-network:
+    driver: bridge

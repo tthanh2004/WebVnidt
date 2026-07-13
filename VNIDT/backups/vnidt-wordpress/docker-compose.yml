@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # ─── MySQL Database ─────────────────────────────────────────
+  vnidt-db:
+    image: mysql:8.0
+    container_name: vnidt-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-vnidt_root_2026}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-vnidt_wp}
+      MYSQL_USER: ${MYSQL_USER:-vnidt}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-vnidt_db_password_2026}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - vnidt-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-vnidt_root_2026}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ─── WordPress ──────────────────────────────────────────────
+  vnidt-wordpress:
+    image: wordpress:6.7-php8.2-apache
+    container_name: vnidt-wordpress
+    restart: always
+    depends_on:
+      vnidt-db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: vnidt-db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-vnidt_wp}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-vnidt}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-vnidt_db_password_2026}
+      WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-vnidt_}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-false}
+    volumes:
+      - wp-data:/var/www/html
+      - ./wp-content/themes/vnidt-theme:/var/www/html/wp-content/themes/vnidt-theme
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+    networks:
+      - vnidt-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/wp-login.php"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ─── Nginx Reverse Proxy ────────────────────────────────────
+  vnidt-nginx:
+    image: nginx:alpine
+    container_name: vnidt-nginx
+    restart: always
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      vnidt-wordpress:
+        condition: service_healthy
+    networks:
+      - vnidt-network
+
+volumes:
+  db-data:
+    driver: local
+  wp-data:
+    driver: local
+
+networks:
+  vnidt-network:
+    driver: bridge

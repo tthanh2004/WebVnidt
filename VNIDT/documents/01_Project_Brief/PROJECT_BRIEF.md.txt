@@ -1,0 +1,57 @@
+# Dự án
+
+Website doanh nghiệp cho:
+
+CTCP Đổi mới Sáng tạo và Chuyển đổi số VN (VNiDT)
+
+## Mục tiêu
+
+- Xây dựng thương hiệu
+- Thu hút khách hàng B2B
+- Giới thiệu năng lực doanh nghiệp
+- Trình diễn giải pháp GIS
+- Trình diễn WebGIS
+- Thu hút khách hàng chuyển đổi số
+
+## Đối tượng khách hàng
+
+- Bộ ngành
+- UBND tỉnh
+- Sở ban ngành
+- Doanh nghiệp lớn
+- Doanh nghiệp công nghệ
+
+## Phong cách
+
+- Enterprise
+- Premium
+- GIS Technology
+- Digital Transformation
+- AI Driven
+
+## Màu sắc
+Gradient 1
+background: linear-gradient(
+135deg,
+#670E7A 0%,
+#9E3589 35%,
+#4390C8 70%,
+#59BFC4 100%
+);
+Gradient 2 (Hero Website)
+background: linear-gradient(
+135deg,
+#0B1220 0%,
+#670E7A 25%,
+#4390C8 70%,
+#59BFC4 100%
+);
+Màu CTA (nút bấm)
+background: #4390C8;
+color: white;
+Hover
+background: #59BFC4;
+
+## Ngôn ngữ
+
+Tiếng Việt
