@@ -298,7 +298,6 @@
 
       const phoneField = document.getElementById('contact-phone');
       const orgField = document.getElementById('contact-org');
-      const interestField = document.getElementById('contact-interest');
 
       const formData = {
         name: nameField.value.trim(),
@@ -416,13 +415,13 @@
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
     const defaultImages = [
-      'assets/Xây dựng cơ sở dữ liệu TNMT.jpg',
-      'assets/Hệ thống quản lý thông minh.jpg',
-      'assets/quản lý nguồn thải trên nền tảng web-app.jpg',
-      'assets/cảnh báo thiên tai và hỗ trợ ngư trường.jpg'
+      'assets/xay-dung-co-so-du-lieu-tnmt.jpg',
+      'assets/he-thong-quan-ly-thong-minh.jpg',
+      'assets/quan-ly-nguon-thai-web-app.jpg',
+      'assets/canh-bao-thien-tai-ngu-truong.jpg'
     ];
     projectsGrid.innerHTML = projects.map((p, index) => {
-      const img = defaultImages[index % defaultImages.length];
+      const img = p.imageUrl || defaultImages[index % defaultImages.length];
       return `
         <div class="project-card reveal visible" style="--i:${index}">
           <img src="${img}" alt="${p.name}" loading="lazy">

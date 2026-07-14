@@ -15,6 +15,7 @@ class CreateProjectDto {
     tag;
     name;
     description;
+    imageUrl;
 }
 exports.CreateProjectDto = CreateProjectDto;
 __decorate([
@@ -32,4 +33,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Mô tả dự án không được để trống' }),
     __metadata("design:type", String)
 ], CreateProjectDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProjectDto.prototype, "imageUrl", void 0);
 //# sourceMappingURL=create-project.dto.js.map

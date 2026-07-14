@@ -21,16 +21,21 @@ const pages_module_1 = require("./pages/pages.module");
 const contact_module_1 = require("./contact/contact.module");
 const projects_module_1 = require("./projects/projects.module");
 const news_module_1 = require("./news/news.module");
+const upload_module_1 = require("./upload/upload.module");
 const getRootPath = () => {
     const prodPath = (0, path_1.join)(__dirname, '..', 'public');
     if ((0, fs_1.existsSync)(prodPath)) {
         return prodPath;
     }
-    const devPath = (0, path_1.join)(__dirname, '..', '..', 'frontend');
-    if ((0, fs_1.existsSync)(devPath)) {
-        return devPath;
+    const path1 = (0, path_1.join)(__dirname, '..', '..', '..', 'frontend');
+    if ((0, fs_1.existsSync)(path1)) {
+        return path1;
     }
-    return (0, path_1.join)(__dirname, '..', 'public');
+    const path2 = (0, path_1.join)(__dirname, '..', '..', 'frontend');
+    if ((0, fs_1.existsSync)(path2)) {
+        return path2;
+    }
+    return prodPath;
 };
 let AppModule = class AppModule {
 };
@@ -41,7 +46,7 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: getRootPath(),
-                exclude: ['/api/(.*)'],
+                exclude: ['/api*'],
                 serveStaticOptions: {
                     extensions: ['html'],
                 },
@@ -52,7 +57,8 @@ exports.AppModule = AppModule = __decorate([
             pages_module_1.PagesModule,
             contact_module_1.ContactModule,
             projects_module_1.ProjectsModule,
-            news_module_1.NewsModule
+            news_module_1.NewsModule,
+            upload_module_1.UploadModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

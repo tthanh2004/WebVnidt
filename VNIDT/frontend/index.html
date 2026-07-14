@@ -27,7 +27,7 @@
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
     <div class="navbar__inner">
       <a href="#home" class="navbar__logo" aria-label="VNiDT Home">
-        <img src="../04_Assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 47px; width: auto; object-fit: contain;">
+        <img src="assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 47px; width: auto; object-fit: contain;">
       </a>
 
       <div class="navbar__links" id="navLinks">
@@ -70,36 +70,43 @@
     <div class="hero__grid-bg" aria-hidden="true"></div>
 
     <div class="container">
-      <div class="hero__content">
-        <div class="hero__label">
-          <span class="pulse"></span>
-          <span data-edit="hero_badge">GIS & Digital Transformation Platform</span>
+      <div class="hero__wrapper">
+        <div class="hero__content">
+          <div class="hero__label">
+            <span class="pulse"></span>
+            <span data-edit="hero_badge">GIS & Digital Transformation Platform</span>
+          </div>
+
+          <h1 class="hero__title" data-edit="hero_title">
+            VNiDT —<br>
+            <span class="gradient-text">Tài nguyên số</span> của bạn.
+          </h1>
+
+          <p class="hero__subtitle" data-edit="hero_subtitle">
+            Kiến tạo tầm nhìn chiến lược từ dữ liệu. Chúng tôi đồng hành cùng chính phủ và doanh nghiệp trong kỷ nguyên số hóa, biến thách thức thành lợi thế cạnh tranh thông qua các giải pháp công nghệ đột phá.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary btn--lg">
+              <span data-edit="hero_cta1">Yêu Cầu Tư Vấn Chuyển Đổi Số</span>
+              <span class="btn__arrow">→</span>
+            </a>
+            <a href="#solutions" class="btn btn--secondary btn--lg" data-edit="hero_cta2">
+              Khám Phá Giải Pháp
+            </a>
+          </div>
         </div>
 
-        <h1 class="hero__title" data-edit="hero_title">
-          VNiDT —<br>
-          <span class="gradient-text">Tài nguyên số</span> của bạn.
-        </h1>
-
-        <p class="hero__subtitle" data-edit="hero_subtitle">
-          Kiến tạo tầm nhìn chiến lược từ dữ liệu. Chúng tôi đồng hành cùng chính phủ và doanh nghiệp trong kỷ nguyên số hóa, biến thách thức thành lợi thế cạnh tranh thông qua các giải pháp công nghệ đột phá.
-        </p>
-
-        <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary btn--lg">
-            <span data-edit="hero_cta1">Yêu Cầu Tư Vấn Chuyển Đổi Số</span>
-            <span class="btn__arrow">→</span>
-          </a>
-          <a href="#solutions" class="btn btn--secondary btn--lg" data-edit="hero_cta2">
-            Khám Phá Giải Pháp
-          </a>
+        <div class="hero__visual-container">
+          <div class="hero__visual-glow"></div>
+          <img src="assets/hero_illustration.jpg" alt="VNiDT GIS & Digital Twin Platform" class="hero__visual-img">
         </div>
       </div>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
       <span>Cuộn xuống</span>
-      <span class="hero__scroll-line"></span>
+      <svg class="hero__scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px; margin-top: 4px; color: var(--color-primary);"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </div>
   </section>
 
@@ -121,7 +128,7 @@
 
         <div class="intro__visual reveal--right">
           <div class="intro__image-wrap">
-            <img src="../04_Assets/Hệ thống quản lý thông minh.jpg" alt="Hệ thống quản lý thông minh VNiDT - Dashboard GIS" loading="lazy">
+            <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Hệ thống quản lý thông minh VNiDT - Dashboard GIS" loading="lazy">
           </div>
           <div class="intro__float-card">
             <div class="stat-number" data-count="50" data-suffix="+">0</div>
@@ -308,7 +315,7 @@
         <!-- Product 1 -->
         <div class="product-card reveal" style="--i:0">
           <div class="product-card__image">
-            <img src="../04_Assets/Xây dựng cơ sở dữ liệu TNMT.jpg" alt="CSDL TNMT" loading="lazy">
+            <img src="assets/xay-dung-co-so-du-lieu-tnmt.jpg" alt="CSDL TNMT" loading="lazy">
           </div>
           <div class="product-card__body">
             <span class="product-card__tag" data-edit="prod_1_tag">WebGIS · CSDL</span>
@@ -321,7 +328,7 @@
         <!-- Product 2 -->
         <div class="product-card reveal" style="--i:1">
           <div class="product-card__image">
-            <img src="../04_Assets/Hệ thống quản lý thông minh.jpg" alt="Quản lý thủy sản" loading="lazy">
+            <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Quản lý thủy sản" loading="lazy">
           </div>
           <div class="product-card__body">
             <span class="product-card__tag" data-edit="prod_2_tag">Smart Management</span>
@@ -334,7 +341,7 @@
         <!-- Product 3 -->
         <div class="product-card reveal" style="--i:2">
           <div class="product-card__image">
-            <img src="../04_Assets/quản lý nguồn thải trên nền tảng web-app.jpg" alt="Quản lý nguồn thải" loading="lazy">
+            <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="Quản lý nguồn thải" loading="lazy">
           </div>
           <div class="product-card__body">
             <span class="product-card__tag" data-edit="prod_3_tag">Môi trường</span>
@@ -347,7 +354,7 @@
         <!-- Product 4 -->
         <div class="product-card reveal" style="--i:3">
           <div class="product-card__image">
-            <img src="../04_Assets/cảnh báo thiên tai và hỗ trợ ngư trường.jpg" alt="Cảnh báo thiên tai" loading="lazy">
+            <img src="assets/canh-bao-thien-tai-ngu-truong.jpg" alt="Cảnh báo thiên tai" loading="lazy">
           </div>
           <div class="product-card__body">
             <span class="product-card__tag" data-edit="prod_4_tag">AI · Mobile</span>
@@ -393,7 +400,7 @@
         </div>
 
         <div class="dashboard__mockup reveal--right">
-          <img src="../04_Assets/quản lý nguồn thải trên nền tảng web-app.jpg" alt="VNiDT GIS Dashboard UI">
+          <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="VNiDT GIS Dashboard UI">
         </div>
       </div>
     </div>
@@ -411,7 +418,7 @@
 
       <div class="projects__grid stagger" id="projects-grid">
         <div class="project-card reveal" style="--i:0">
-          <img src="../04_Assets/Xây dựng cơ sở dữ liệu TNMT.jpg" alt="Dự án CSDL TNMT" loading="lazy">
+          <img src="assets/xay-dung-co-so-du-lieu-tnmt.jpg" alt="Dự án CSDL TNMT" loading="lazy">
           <div class="project-card__overlay">
             <span class="project-card__tag" data-edit="proj_1_tag">CSDL · GIS</span>
             <h3 class="project-card__title" data-edit="proj_1_title">CSDL Tài Nguyên Môi Trường</h3>
@@ -420,7 +427,7 @@
         </div>
 
         <div class="project-card reveal" style="--i:1">
-          <img src="../04_Assets/Hệ thống quản lý thông minh.jpg" alt="Dự án thủy sản" loading="lazy">
+          <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Dự án thủy sản" loading="lazy">
           <div class="project-card__overlay">
             <span class="project-card__tag" data-edit="proj_2_tag">Thủy sản · Quảng Ninh</span>
             <h3 class="project-card__title" data-edit="proj_2_title">Quản Lý Thủy Sản Vịnh Bắc Bộ</h3>
@@ -429,7 +436,7 @@
         </div>
 
         <div class="project-card reveal" style="--i:2">
-          <img src="../04_Assets/quản lý nguồn thải trên nền tảng web-app.jpg" alt="Dự án nguồn thải" loading="lazy">
+          <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="Dự án nguồn thải" loading="lazy">
           <div class="project-card__overlay">
             <span class="project-card__tag" data-edit="proj_3_tag">Môi trường · Web/App</span>
             <h3 class="project-card__title" data-edit="proj_3_title">Giám Sát Nguồn Thải Quốc Gia</h3>
@@ -438,7 +445,7 @@
         </div>
 
         <div class="project-card reveal" style="--i:3">
-          <img src="../04_Assets/cảnh báo thiên tai và hỗ trợ ngư trường.jpg" alt="Dự án Biển Đông" loading="lazy">
+          <img src="assets/canh-bao-thien-tai-ngu-truong.jpg" alt="Dự án Biển Đông" loading="lazy">
           <div class="project-card__overlay">
             <span class="project-card__tag" data-edit="proj_4_tag">AI · Biển Đông</span>
             <h3 class="project-card__title" data-edit="proj_4_title">Cảnh Báo Thiên Tai Biển Đông</h3>
@@ -703,7 +710,7 @@
         <!-- Brand -->
         <div>
           <a href="#home" class="navbar__logo" style="margin-bottom:var(--sp-4); display:inline-flex">
-            <img src="../04_Assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 62px; width: auto; object-fit: contain;">
+            <img src="assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 62px; width: auto; object-fit: contain;">
           </a>
           <p class="footer__brand-text" data-edit="footer_brand">CTCP Đổi mới Sáng tạo và Chuyển đổi số VN. Kiến tạo hệ sinh thái số toàn diện cho chính phủ và doanh nghiệp Việt Nam.</p>
         </div>

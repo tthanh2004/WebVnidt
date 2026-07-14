@@ -12,6 +12,7 @@ export declare class ProjectsController {
             name: string;
             description: string;
             tag: string;
+            imageUrl: string | null;
         }[];
     }>;
     createProject(body: CreateProjectDto): Promise<{
@@ -23,6 +24,7 @@ export declare class ProjectsController {
             name: string;
             description: string;
             tag: string;
+            imageUrl: string | null;
         };
         message: string;
     }>;
@@ -35,6 +37,7 @@ export declare class ProjectsController {
             name: string;
             description: string;
             tag: string;
+            imageUrl: string | null;
         };
         message: string;
     }>;

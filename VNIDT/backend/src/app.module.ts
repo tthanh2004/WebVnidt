@@ -12,17 +12,22 @@ import { PagesModule } from './pages/pages.module';
 import { ContactModule } from './contact/contact.module';
 import { ProjectsModule } from './projects/projects.module';
 import { NewsModule } from './news/news.module';
+import { UploadModule } from './upload/upload.module';
 
 const getRootPath = () => {
   const prodPath = join(__dirname, '..', 'public');
   if (existsSync(prodPath)) {
     return prodPath;
   }
-  const devPath = join(__dirname, '..', '..', 'frontend');
-  if (existsSync(devPath)) {
-    return devPath;
+  const path1 = join(__dirname, '..', '..', '..', 'frontend');
+  if (existsSync(path1)) {
+    return path1;
   }
-  return join(__dirname, '..', 'public');
+  const path2 = join(__dirname, '..', '..', 'frontend');
+  if (existsSync(path2)) {
+    return path2;
+  }
+  return prodPath;
 };
 
 @Module({
@@ -30,7 +35,7 @@ const getRootPath = () => {
     ConfigModule.forRoot({ isGlobal: true }),
     ServeStaticModule.forRoot({
       rootPath: getRootPath(),
-      exclude: ['/api/(.*)'],
+      exclude: ['/api*'],
       serveStaticOptions: {
         extensions: ['html'],
       },
@@ -41,7 +46,8 @@ const getRootPath = () => {
     PagesModule, 
     ContactModule,
     ProjectsModule,
-    NewsModule
+    NewsModule,
+    UploadModule
   ],
   controllers: [AppController],
   providers: [AppService],

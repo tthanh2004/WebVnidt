@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateProjectDto {
   @IsString()
@@ -12,4 +12,8 @@ export class CreateProjectDto {
   @IsString()
   @IsNotEmpty({ message: 'Mô tả dự án không được để trống' })
   description: string;
+
+  @IsString()
+  @IsOptional()
+  imageUrl?: string;
 }

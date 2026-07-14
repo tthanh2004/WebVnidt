@@ -20,8 +20,8 @@
       --text-primary: #0F172A;
       --text-secondary: #475569;
       --text-muted: #94A3B8;
-      --accent: #0D9488;
-      --accent-glow: rgba(13, 148, 136, 0.1);
+      --accent: #0F52BA;
+      --accent-glow: rgba(15, 82, 186, 0.1);
       --success: #10B981;
       --warning: #F59E0B;
       --error: #EF4444;
@@ -59,7 +59,7 @@
     }
     .topbar__brand-icon {
       width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #A855F7);
+      background: linear-gradient(135deg, var(--accent), #0D9488);
       display: flex; align-items: center; justify-content: center;
       color: white; font-weight: 800; font-size: 16px;
     }
@@ -80,10 +80,10 @@
     }
     .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
     .btn--primary {
-      background: linear-gradient(135deg, var(--accent), #9333EA);
-      color: white; box-shadow: 0 2px 12px rgba(124,58,237,0.3);
+      background: linear-gradient(135deg, var(--accent), #0EA5E9);
+      color: white; box-shadow: 0 2px 12px rgba(15,82,186,0.3);
     }
-    .btn--primary:hover { box-shadow: 0 4px 20px rgba(124,58,237,0.5); transform: translateY(-1px); }
+    .btn--primary:hover { box-shadow: 0 4px 20px rgba(15,82,186,0.5); transform: translateY(-1px); }
     .btn--secondary {
       background: var(--bg-input); color: var(--text-primary);
       border: 1px solid var(--border);
@@ -119,7 +119,7 @@
     .sidebar__item:hover { background: var(--bg-input); color: var(--text-primary); }
     .sidebar__item.active {
       background: var(--accent-glow); color: var(--accent);
-      border-color: rgba(124,58,237,0.2);
+      border-color: rgba(15, 82, 186, 0.2);
     }
     .sidebar__item-icon {
       width: 32px; height: 32px; border-radius: 8px;
@@ -154,7 +154,7 @@
     }
     .panel__icon {
       width: 48px; height: 48px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #9333EA);
+      background: linear-gradient(135deg, var(--accent), #0D9488);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; font-weight: 800; color: white;
     }
@@ -172,7 +172,7 @@
       font-size: 9px; font-weight: 700; text-transform: uppercase;
       padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px;
     }
-    .field__badge--html { background: rgba(124,58,237,0.15); color: var(--accent); }
+    .field__badge--html { background: rgba(15,82,186,0.15); color: var(--accent); }
     .field__badge--text { background: rgba(16,185,129,0.15); color: var(--success); }
 
     .field__input,
@@ -223,7 +223,7 @@
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast--success { background: rgba(16,185,129,0.15); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
     .toast--error { background: rgba(239,68,68,0.15); color: var(--error); border: 1px solid rgba(239,68,68,0.3); }
-    .toast--info { background: rgba(124,58,237,0.15); color: var(--accent); border: 1px solid rgba(124,58,237,0.3); }
+    .toast--info { background: rgba(15,82,186,0.15); color: var(--accent); border: 1px solid rgba(15,82,186,0.3); }
     .toast svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     /* ── Modal ── */
@@ -281,7 +281,7 @@
   <header class="topbar">
     <div style="display:flex; align-items:center; gap:16px">
       <a href="index.html" class="topbar__brand">
-        <img src="../04_Assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 47px; width: auto; object-fit: contain;">
+        <img src="assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 47px; width: auto; object-fit: contain;">
         Admin
       </a>
       <span class="topbar__badge">CMS</span>
@@ -406,6 +406,21 @@
         <input type="text" class="field__input" id="projModalTag" placeholder="Ví dụ: CSDL · GIS">
       </div>
       <div class="field">
+        <label class="field__label">Ảnh dự án</label>
+        <input type="hidden" id="projModalImageUrl">
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <label for="projModalFile" class="btn btn--secondary" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; padding: 8px 16px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Chọn ảnh
+          </label>
+          <input type="file" id="projModalFile" accept="image/*" style="display:none;">
+          <span id="projModalFileName" style="font-size:12px; color:var(--text-muted);">Chưa chọn ảnh</span>
+        </div>
+        <div id="projModalPreview" style="margin-top: 10px; display:none;">
+          <img id="projModalPreviewImg" style="max-width: 200px; max-height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+      </div>
+      <div class="field">
         <label class="field__label">Mô tả dự án</label>
         <textarea class="field__textarea" id="projModalDesc" placeholder="Mô tả ngắn gọn về dự án..."></textarea>
       </div>
@@ -466,8 +481,12 @@
 
     // ── Build Sidebar ──
     var sidebar = document.getElementById('sidebar');
-    var sidebarHTML = '<div class="sidebar__label">Nội dung trang</div>';
+    var sidebarHTML = '<div class="sidebar__label sidebar__label-toggle" id="toggleStaticContent" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">' +
+      '<span>Nội dung trang</span>' +
+      '<svg class="sidebar__label-chevron" style="width: 14px; height: 14px; transition: transform 0.2s ease;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
+      '</div>';
 
+    sidebarHTML += '<div class="sidebar__group" id="staticContentGroup" style="transition: max-height 0.3s ease, opacity 0.2s ease; overflow: hidden;">';
     CMS.SECTIONS.forEach(function (sec) {
       var fieldCount = CMS.FIELDS.filter(function (f) { return f.section === sec.id; }).length;
       sidebarHTML += '<div class="sidebar__item' + (sec.id === currentSection ? ' active' : '') + '" data-section="' + sec.id + '">' +
@@ -476,6 +495,7 @@
         '<span class="sidebar__count">' + fieldCount + '</span>' +
         '</div>';
     });
+    sidebarHTML += '</div>';
 
     sidebarHTML += '<div class="sidebar__label" style="margin-top: 16px;">Nghiệp vụ Biển Đảo</div>';
     sidebarHTML += '<div class="sidebar__item" data-section="projects">' +
@@ -501,6 +521,37 @@
     }
 
     sidebar.innerHTML = sidebarHTML;
+
+    // Attach toggle handler
+    var toggleBtn = document.getElementById('toggleStaticContent');
+    var contentGroup = document.getElementById('staticContentGroup');
+    if (toggleBtn && contentGroup) {
+      var isCollapsed = localStorage.getItem('vnidt_cms_static_collapsed') !== 'false';
+      
+      const updateCollapsibleState = (collapsed) => {
+        if (collapsed) {
+          contentGroup.style.maxHeight = '0px';
+          contentGroup.style.opacity = '0';
+          contentGroup.style.pointerEvents = 'none';
+          toggleBtn.querySelector('.sidebar__label-chevron').style.transform = 'rotate(-90deg)';
+        } else {
+          contentGroup.style.maxHeight = contentGroup.scrollHeight + 'px';
+          contentGroup.style.opacity = '1';
+          contentGroup.style.pointerEvents = 'auto';
+          toggleBtn.querySelector('.sidebar__label-chevron').style.transform = 'rotate(0deg)';
+        }
+      };
+
+      // Set initial state
+      updateCollapsibleState(isCollapsed);
+
+      toggleBtn.addEventListener('click', function () {
+        var currentlyCollapsed = localStorage.getItem('vnidt_cms_static_collapsed') !== 'false';
+        var nextCollapsed = !currentlyCollapsed;
+        localStorage.setItem('vnidt_cms_static_collapsed', nextCollapsed);
+        updateCollapsibleState(nextCollapsed);
+      });
+    }
 
     // ── Build Panels ──
     var mainContent = document.getElementById('mainContent');
@@ -587,8 +638,8 @@
     panelsHTML += '<div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden;">';
     panelsHTML += '<table style="width: 100%; text-align: left; border-collapse: collapse; font-size: 14px;">';
     panelsHTML += '<thead><tr style="background: var(--bg-input); border-bottom: 1px solid var(--border);">' +
-                  '<th style="padding: 12px 16px; width: 15%">Tag</th><th style="padding: 12px 16px; width: 30%">Tên dự án</th><th style="padding: 12px 16px; width: 40%">Mô tả</th><th style="padding: 12px 16px; width: 15%">Thao tác</th></tr></thead>';
-    panelsHTML += '<tbody id="projectsTableBody"><tr><td colspan="4" style="padding: 16px; text-align:center;">Đang tải...</td></tr></tbody>';
+                  '<th style="padding: 12px 16px; width: 10%">Ảnh</th><th style="padding: 12px 16px; width: 15%">Tag</th><th style="padding: 12px 16px; width: 25%">Tên dự án</th><th style="padding: 12px 16px; width: 35%">Mô tả</th><th style="padding: 12px 16px; width: 15%">Thao tác</th></tr></thead>';
+    panelsHTML += '<tbody id="projectsTableBody"><tr><td colspan="5" style="padding: 16px; text-align:center;">Đang tải...</td></tr></tbody>';
     panelsHTML += '</table></div>';
     panelsHTML += '</div>';
 
@@ -820,42 +871,60 @@
       }
     });
 
-    // ── Load Projects ──
     async function loadProjects() {
       var token = localStorage.getItem('vnidt_cms_token');
       var tbody = document.getElementById('projectsTableBody');
       if(!tbody) return;
-      tbody.innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align:center;">Đang tải...</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="5" style="padding: 16px; text-align:center;">Đang tải...</td></tr>';
       try {
         var res = await fetch('/api/projects');
         var resData = await res.json();
         if (resData.success) {
           var html = '';
           resData.data.forEach(function(p) {
+            var imgUrl = p.imageUrl || '';
+            var imgTag = imgUrl ? '<img src="' + imgUrl + '" style="width: 48px; height: 32px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">' : '<span style="font-size:11px; color:var(--text-muted)">Không có</span>';
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
+                    '<td style="padding: 12px 16px;">' + imgTag + '</td>' +
                     '<td style="padding: 12px 16px;"><span class="field__badge field__badge--text">' + p.tag + '</span></td>' +
                     '<td style="padding: 12px 16px; font-weight:600">' + p.name + '</td>' +
                     '<td style="padding: 12px 16px; color:var(--text-secondary)">' + p.description + '</td>' +
                     '<td style="padding: 12px 16px;">' +
-                    '<button class="btn btn--secondary btnEditProject" data-id="'+p.id+'" data-tag="'+p.tag+'" data-name="'+p.name+'" data-desc="'+p.description+'" style="padding: 4px 8px; font-size: 11px; margin-right: 8px;">Sửa</button>' +
-                    '<button class="btn btn--danger btnDeleteProject" data-id="'+p.id+'" style="padding: 4px 8px; font-size: 11px;">Xóa</button>' +
+                    '<button class="btn btn--ghost btnEditProject" data-id="'+p.id+'" data-tag="'+p.tag+'" data-name="'+p.name+'" data-desc="'+p.description+'" data-image="'+imgUrl+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+                    '<button class="btn btn--ghost btnDeleteProject" data-id="'+p.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
-          tbody.innerHTML = html || '<tr><td colspan="4" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có dự án nào.</td></tr>';
+          tbody.innerHTML = html || '<tr><td colspan="5" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có dự án nào.</td></tr>';
           
           // Bind edit events
           document.querySelectorAll('.btnEditProject').forEach(function(btn) {
             btn.addEventListener('click', function(e) {
-              var id = e.target.getAttribute('data-id');
-              var tag = e.target.getAttribute('data-tag');
-              var name = e.target.getAttribute('data-name');
-              var desc = e.target.getAttribute('data-desc');
+              var id = this.getAttribute('data-id');
+              var tag = this.getAttribute('data-tag');
+              var name = this.getAttribute('data-name');
+              var desc = this.getAttribute('data-desc');
+              var image = this.getAttribute('data-image');
               
               document.getElementById('projModalTitle').innerText = 'Sửa Dự Án';
               document.getElementById('projModalId').value = id;
               document.getElementById('projModalTag').value = tag;
               document.getElementById('projModalName').value = name;
               document.getElementById('projModalDesc').value = desc;
+              document.getElementById('projModalImageUrl').value = image;
+              // Show existing image preview
+              var fileInput = document.getElementById('projModalFile');
+              if (fileInput) fileInput.value = '';
+              var previewDiv = document.getElementById('projModalPreview');
+              var previewImg = document.getElementById('projModalPreviewImg');
+              var fileNameSpan = document.getElementById('projModalFileName');
+              if (image) {
+                previewImg.src = image;
+                previewDiv.style.display = 'block';
+                fileNameSpan.textContent = image.split('/').pop();
+              } else {
+                previewDiv.style.display = 'none';
+                fileNameSpan.textContent = 'Chưa chọn ảnh';
+              }
               document.getElementById('projModal').classList.add('show');
             });
           });
@@ -863,7 +932,7 @@
           // Bind delete events
           document.querySelectorAll('.btnDeleteProject').forEach(function(btn) {
             btn.addEventListener('click', async function(e) {
-              var id = e.target.getAttribute('data-id');
+              var id = this.getAttribute('data-id');
               if(!confirm('Bạn có chắc chắn muốn xóa dự án này?')) return;
               var dres = await fetch('/api/projects/' + id, {
                 method: 'DELETE',
@@ -880,7 +949,7 @@
           });
         }
       } catch(e) {
-        tbody.innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align:center; color:var(--error)">Lỗi tải danh sách dự án.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="padding: 16px; text-align:center; color:var(--error)">Lỗi tải danh sách dự án.</td></tr>';
       }
     }
 
@@ -910,8 +979,8 @@
                     '<td style="padding: 12px 16px;">' + statusBadge + '</td>' +
                     '<td style="padding: 12px 16px; color:var(--text-muted); font-size:13px">' + authorEmail + '</td>' +
                     '<td style="padding: 12px 16px;">' +
-                    '<button class="btn btn--secondary btnEditNews" data-id="'+n.id+'" data-name="'+n.name+'" data-slug="'+n.slug+'" data-status="'+n.status+'" data-desc="'+n.description+'" data-date="'+localISO+'" style="padding: 4px 8px; font-size: 11px; margin-right: 8px;">Sửa</button>' +
-                    '<button class="btn btn--danger btnDeleteNews" data-id="'+n.id+'" style="padding: 4px 8px; font-size: 11px;">Xóa</button>' +
+                    '<button class="btn btn--ghost btnEditNews" data-id="'+n.id+'" data-name="'+n.name+'" data-slug="'+n.slug+'" data-status="'+n.status+'" data-desc="'+n.description+'" data-date="'+localISO+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+                    '<button class="btn btn--ghost btnDeleteNews" data-id="'+n.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
           tbody.innerHTML = html || '<tr><td colspan="6" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có tin tức nào.</td></tr>';
@@ -919,12 +988,12 @@
           // Bind edit events
           document.querySelectorAll('.btnEditNews').forEach(function(btn) {
             btn.addEventListener('click', function(e) {
-              var id = e.target.getAttribute('data-id');
-              var name = e.target.getAttribute('data-name');
-              var slug = e.target.getAttribute('data-slug');
-              var status = e.target.getAttribute('data-status');
-              var desc = e.target.getAttribute('data-desc');
-              var date = e.target.getAttribute('data-date');
+              var id = this.getAttribute('data-id');
+              var name = this.getAttribute('data-name');
+              var slug = this.getAttribute('data-slug');
+              var status = this.getAttribute('data-status');
+              var desc = this.getAttribute('data-desc');
+              var date = this.getAttribute('data-date');
               
               document.getElementById('newsModalTitle').innerText = 'Sửa Tin Tức';
               document.getElementById('newsModalId').value = id;
@@ -940,7 +1009,7 @@
           // Bind delete events
           document.querySelectorAll('.btnDeleteNews').forEach(function(btn) {
             btn.addEventListener('click', async function(e) {
-              var id = e.target.getAttribute('data-id');
+              var id = this.getAttribute('data-id');
               if(!confirm('Bạn có chắc chắn muốn xóa tin tức này?')) return;
               var dres = await fetch('/api/news/' + id, {
                 method: 'DELETE',
@@ -993,7 +1062,7 @@
                     '<td style="padding: 12px 16px;"><span class="field__badge field__badge--html">' + sectorLabel + '</span></td>' +
                     '<td style="padding: 12px 16px; max-width:250px; white-space:pre-wrap; font-size:12.5px">' + c.message + '</td>' +
                     '<td style="padding: 12px 16px;">' +
-                    '<button class="btn btn--danger btnDeleteContact" data-id="'+c.id+'" style="padding: 4px 8px; font-size: 11px;">Xóa</button>' +
+                    '<button class="btn btn--ghost btnDeleteContact" data-id="'+c.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
           tbody.innerHTML = html || '<tr><td colspan="6" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có yêu cầu tư vấn nào.</td></tr>';
@@ -1001,7 +1070,7 @@
           // Bind delete events
           document.querySelectorAll('.btnDeleteContact').forEach(function(btn) {
             btn.addEventListener('click', async function(e) {
-              var id = e.target.getAttribute('data-id');
+              var id = this.getAttribute('data-id');
               if(!confirm('Bạn có chắc chắn muốn xóa yêu cầu tư vấn này?')) return;
               var dres = await fetch('/api/contact/' + id, {
                 method: 'DELETE',
@@ -1025,14 +1094,42 @@
     // ── Init bindings for dynamic sections ──
     function initDynamicBindings() {
       var projModal = document.getElementById('projModal');
+      var projFileInput = document.getElementById('projModalFile');
+      var projFileName = document.getElementById('projModalFileName');
+      var projPreview = document.getElementById('projModalPreview');
+      var projPreviewImg = document.getElementById('projModalPreviewImg');
+
+      // File preview handler
+      if (projFileInput) {
+        projFileInput.addEventListener('change', function() {
+          if (this.files && this.files[0]) {
+            projFileName.textContent = this.files[0].name;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              projPreviewImg.src = e.target.result;
+              projPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(this.files[0]);
+          }
+        });
+      }
+
+      function resetProjModal() {
+        document.getElementById('projModalTitle').innerText = 'Thêm Dự Án';
+        document.getElementById('projModalId').value = '';
+        document.getElementById('projModalTag').value = '';
+        document.getElementById('projModalName').value = '';
+        document.getElementById('projModalDesc').value = '';
+        document.getElementById('projModalImageUrl').value = '';
+        if (projFileInput) projFileInput.value = '';
+        if (projFileName) projFileName.textContent = 'Chưa chọn ảnh';
+        if (projPreview) projPreview.style.display = 'none';
+      }
+
       var btnCreateProject = document.getElementById('btnCreateProject');
       if (btnCreateProject) {
         btnCreateProject.addEventListener('click', function() {
-          document.getElementById('projModalTitle').innerText = 'Thêm Dự Án';
-          document.getElementById('projModalId').value = '';
-          document.getElementById('projModalTag').value = '';
-          document.getElementById('projModalName').value = '';
-          document.getElementById('projModalDesc').value = '';
+          resetProjModal();
           projModal.classList.add('show');
         });
       }
@@ -1049,10 +1146,32 @@
           var tag = document.getElementById('projModalTag').value.trim();
           var name = document.getElementById('projModalName').value.trim();
           var desc = document.getElementById('projModalDesc').value.trim();
+          var imageUrl = document.getElementById('projModalImageUrl').value.trim();
           
           if (!tag || !name || !desc) return showToast('Vui lòng nhập đủ thông tin', 'error');
+
+          // Upload ảnh nếu có file mới được chọn
+          if (projFileInput && projFileInput.files && projFileInput.files[0]) {
+            var formData = new FormData();
+            formData.append('file', projFileInput.files[0]);
+            try {
+              var uploadRes = await fetch('/api/upload/image', {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('vnidt_cms_token') },
+                body: formData
+              });
+              var uploadData = await uploadRes.json();
+              if (uploadData.success) {
+                imageUrl = uploadData.imageUrl;
+              } else {
+                return showToast(uploadData.message || 'Lỗi tải ảnh lên', 'error');
+              }
+            } catch(uploadErr) {
+              return showToast('Lỗi kết nối khi tải ảnh lên', 'error');
+            }
+          }
           
-          var payload = { tag: tag, name: name, description: desc };
+          var payload = { tag: tag, name: name, description: desc, imageUrl: imageUrl || null };
           var url = '/api/projects' + (id ? '/' + id : '');
           var method = id ? 'PUT' : 'POST';
           
@@ -1170,8 +1289,8 @@
                   '<td style="padding: 12px 16px;">' + u.email + '</td>' +
                   '<td style="padding: 12px 16px;"><span class="field__badge field__badge--html">' + u.role + '</span></td>' +
                   '<td style="padding: 12px 16px;">' +
-                  '<button class="btn btn--secondary btnEditUser" data-id="'+u.id+'" data-email="'+u.email+'" data-role="'+u.role+'" style="padding: 4px 8px; font-size: 11px; margin-right: 8px;">Sửa</button>' +
-                  '<button class="btn btn--danger btnDeleteUser" data-id="'+u.id+'" style="padding: 4px 8px; font-size: 11px;">Xóa</button>' +
+                  '<button class="btn btn--ghost btnEditUser" data-id="'+u.id+'" data-email="'+u.email+'" data-role="'+u.role+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+                  '<button class="btn btn--ghost btnDeleteUser" data-id="'+u.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                   '</td></tr>';
         });
         tbody.innerHTML = html;
@@ -1179,9 +1298,9 @@
         // Bind edit events
         document.querySelectorAll('.btnEditUser').forEach(function(btn) {
           btn.addEventListener('click', function(e) {
-            var id = e.target.getAttribute('data-id');
-            var email = e.target.getAttribute('data-email');
-            var role = e.target.getAttribute('data-role');
+            var id = this.getAttribute('data-id');
+            var email = this.getAttribute('data-email');
+            var role = this.getAttribute('data-role');
             
             document.getElementById('userModalTitle').innerText = 'Sửa Tài Khoản';
             document.getElementById('userModalId').value = id;
@@ -1197,7 +1316,7 @@
         // Bind delete events
         document.querySelectorAll('.btnDeleteUser').forEach(function(btn) {
           btn.addEventListener('click', async function(e) {
-            var id = e.target.getAttribute('data-id');
+            var id = this.getAttribute('data-id');
             if(!confirm('Bạn có chắc chắn muốn xóa tài khoản này?')) return;
             var dres = await fetch('/api/users/' + id, {
               method: 'DELETE',

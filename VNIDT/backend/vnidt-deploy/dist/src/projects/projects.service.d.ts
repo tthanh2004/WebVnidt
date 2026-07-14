@@ -10,6 +10,7 @@ export declare class ProjectsService {
         name: string;
         description: string;
         tag: string;
+        imageUrl: string | null;
     }[]>;
     findOne(id: string): Promise<{
         id: string;
@@ -18,6 +19,7 @@ export declare class ProjectsService {
         name: string;
         description: string;
         tag: string;
+        imageUrl: string | null;
     } | null>;
     create(data: CreateProjectDto): Promise<{
         id: string;
@@ -26,6 +28,7 @@ export declare class ProjectsService {
         name: string;
         description: string;
         tag: string;
+        imageUrl: string | null;
     }>;
     update(id: string, data: CreateProjectDto): Promise<{
         id: string;
@@ -34,6 +37,7 @@ export declare class ProjectsService {
         name: string;
         description: string;
         tag: string;
+        imageUrl: string | null;
     }>;
     remove(id: string): Promise<{
         id: string;
@@ -42,5 +46,6 @@ export declare class ProjectsService {
         name: string;
         description: string;
         tag: string;
+        imageUrl: string | null;
     }>;
 }

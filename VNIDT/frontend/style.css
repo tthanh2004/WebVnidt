@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ---------- 0. Font Import ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ---------- 1. Custom Properties (Design Tokens) ---------- */
 :root {
@@ -36,7 +36,7 @@
   --color-warning: #F59E0B;
 
   /* Typography */
-  --font-primary: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  --font-primary: 'Be Vietnam Pro', 'Outfit', system-ui, -apple-system, sans-serif;
   --fs-hero: clamp(2.6rem, 5.5vw, 4.8rem);
   --fs-h1: clamp(2rem, 4vw, 3.2rem);
   --fs-h2: clamp(1.6rem, 3vw, 2.4rem);
@@ -206,16 +206,21 @@ section {
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
   z-index: 1000;
+  background: rgba(240, 250, 255, 0.85); /* Clean ocean default */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(12, 74, 110, 0.06);
   transition: background var(--t-base) var(--ease-out),
               box-shadow var(--t-base) var(--ease-out),
               backdrop-filter var(--t-base) var(--ease-out);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(240, 250, 255, 0.92); /* Clean ocean white-blue glass */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(15, 82, 186, 0.1);
+  box-shadow: 0 2px 20px rgba(12, 74, 110, 0.08);
+  border-bottom: 1px solid rgba(12, 74, 110, 0.1);
 }
 
 .navbar__inner {
@@ -231,7 +236,7 @@ section {
 .navbar__logo {
   font-size: 1.5rem;
   font-weight: var(--fw-extrabold);
-  color: var(--text-primary);
+  color: var(--color-primary);
   letter-spacing: -0.5px;
   display: flex;
   align-items: center;
@@ -240,7 +245,7 @@ section {
 
 .navbar__logo-icon {
   width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--color-accent), #FFFFFF);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
@@ -258,8 +263,8 @@ section {
 .navbar__link {
   padding: var(--sp-2) var(--sp-4);
   font-size: var(--fs-small);
-  font-weight: var(--fw-medium);
-  color: var(--text-muted);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
   border-radius: var(--r-sm);
   transition: color var(--t-fast), background var(--t-fast);
   position: relative;
@@ -267,7 +272,7 @@ section {
 
 .navbar__link:hover,
 .navbar__link.active {
-  color: var(--text-primary);
+  color: var(--color-primary);
 }
 
 .navbar__link.active::after {
@@ -276,9 +281,16 @@ section {
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 20px; height: 2px;
-  background: var(--color-accent);
+  background: var(--color-secondary);
   border-radius: 1px;
 }
+
+/* Clean ocean navbar text overrides when scrolled */
+.navbar.scrolled .navbar__logo { color: #0C4A6E; }
+.navbar.scrolled .navbar__link { color: #475569; }
+.navbar.scrolled .navbar__link:hover,
+.navbar.scrolled .navbar__link.active { color: #0C4A6E; }
+.navbar.scrolled .navbar__link.active::after { background: #0D9488; }
 
 .navbar__cta {
   margin-left: var(--sp-4);
@@ -500,10 +512,10 @@ section {
 
 .hero__scroll {
   position: absolute;
-  bottom: 40px;
+  bottom: 75px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -827,12 +839,13 @@ section {
   transition: transform var(--t-base) var(--ease-out),
               border-color var(--t-base),
               box-shadow var(--t-base);
+  box-shadow: 0 4px 20px rgba(15, 82, 186, 0.04);
 }
 
 .product-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(var(--color-accent-rgb),.3);
-  box-shadow: var(--shadow-glow);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 12px 30px rgba(var(--color-accent-rgb), 0.15);
 }
 
 .product-card__image {
@@ -850,14 +863,14 @@ section {
 }
 
 .product-card:hover .product-card__image img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .product-card__image::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(6,6,15,.8) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(15, 82, 186, 0.3) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -868,12 +881,12 @@ section {
 .product-card__tag {
   display: inline-flex;
   padding: 4px 12px;
-  background: rgba(var(--color-accent-rgb),.1);
-  border: 1px solid rgba(var(--color-accent-rgb),.2);
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.25);
   border-radius: var(--r-full);
   font-size: var(--fs-xs);
   font-weight: var(--fw-medium);
-  color: #a78bfa;
+  color: var(--color-primary);
   margin-bottom: var(--sp-4);
 }
 
@@ -920,6 +933,17 @@ section {
   overflow: hidden;
   aspect-ratio: 16/10;
   cursor: pointer;
+  border: 1px solid rgba(var(--color-primary-rgb), 0.1);
+  box-shadow: 0 4px 20px rgba(15, 82, 186, 0.04);
+  transition: transform var(--t-base) var(--ease-out),
+              border-color var(--t-base),
+              box-shadow var(--t-base);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 12px 30px rgba(var(--color-accent-rgb), 0.15);
 }
 
 .project-card img {
@@ -930,13 +954,13 @@ section {
 }
 
 .project-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .project-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(6,6,15,.92) 0%, rgba(6,6,15,.3) 50%, transparent);
+  background: linear-gradient(to top, rgba(15, 82, 186, 0.9) 0%, rgba(15, 82, 186, 0.3) 50%, transparent);
   padding: var(--sp-8);
   display: flex;
   flex-direction: column;
@@ -945,29 +969,30 @@ section {
 }
 
 .project-card:hover .project-card__overlay {
-  background: linear-gradient(to top, rgba(6,6,15,.95) 0%, rgba(6,6,15,.5) 60%, rgba(6,6,15,.2));
+  background: linear-gradient(to top, rgba(15, 82, 186, 0.95) 0%, rgba(13, 148, 136, 0.5) 60%, rgba(15, 82, 186, 0.2));
 }
 
 .project-card__tag {
   display: inline-flex;
   padding: 4px 10px;
-  background: rgba(var(--color-accent-rgb),.15);
+  background: rgba(var(--color-accent-rgb), 0.2);
   border-radius: var(--r-full);
   font-size: var(--fs-xs);
   font-weight: var(--fw-medium);
-  color: #a78bfa;
+  color: #FFFFFF;
   margin-bottom: var(--sp-3);
   width: fit-content;
 }
 
 .project-card__title {
   font-size: var(--fs-h3);
+  color: #FFFFFF;
   margin-bottom: var(--sp-2);
 }
 
 .project-card__desc {
   font-size: var(--fs-small);
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.85);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1236,9 +1261,10 @@ section {
 
 /* ---------- 18. Footer ---------- */
 .footer {
-  background: var(--bg-base);
-  border-top: 1px solid var(--glass-border);
+  background: linear-gradient(160deg, #0C4A6E 0%, #164E63 100%); /* Clean Ocean footer */
+  border-top: 1px solid rgba(13, 148, 136, 0.3);
   padding: var(--sp-16) 0 var(--sp-8);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .footer__grid {
@@ -1249,7 +1275,7 @@ section {
 }
 
 .footer__brand-text {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   font-size: var(--fs-small);
   margin-top: var(--sp-4);
   line-height: 1.8;
@@ -1257,11 +1283,11 @@ section {
 
 .footer__heading {
   font-size: var(--fs-small);
-  font-weight: var(--fw-semibold);
-  color: var(--text-primary);
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
   margin-bottom: var(--sp-5);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
 }
 
 .footer__links {
@@ -1272,15 +1298,17 @@ section {
 
 .footer__links a {
   font-size: var(--fs-small);
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   transition: color var(--t-fast);
 }
 
-.footer__links a:hover { color: var(--text-primary); }
+.footer__links a:hover {
+  color: var(--color-secondary); /* Ocean Teal hover */
+}
 
 .footer__bottom {
   padding-top: var(--sp-8);
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1288,7 +1316,7 @@ section {
 
 .footer__copyright {
   font-size: var(--fs-xs);
-  color: var(--text-subtle);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .footer__socials {
@@ -1299,18 +1327,18 @@ section {
 .footer__social {
   width: 36px; height: 36px;
   border-radius: var(--r-sm);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
   transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
 }
 
 .footer__social:hover {
-  color: var(--text-primary);
-  border-color: rgba(var(--color-primary-rgb),.2);
-  background: rgba(var(--color-primary-rgb),.05);
+  color: #FFFFFF;
+  border-color: var(--color-secondary);
+  background: rgba(13, 148, 136, 0.15);
 }
 
 .footer__social svg { width: 16px; height: 16px; }
