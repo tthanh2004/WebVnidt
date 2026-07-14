@@ -469,6 +469,7 @@
   <!-- Hidden file input for import -->
   <input type="file" accept=".json" class="hidden-input" id="fileInput">
 
+  <script src="config.js"></script>
   <script src="content.js"></script>
   <script>
   (async function () {
@@ -883,7 +884,8 @@
           var html = '';
           resData.data.forEach(function(p) {
             var imgUrl = p.imageUrl || '';
-            var imgTag = imgUrl ? '<img src="' + imgUrl + '" style="width: 48px; height: 32px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">' : '<span style="font-size:11px; color:var(--text-muted)">Không có</span>';
+            var resolvedImgUrl = window.getAssetUrl ? window.getAssetUrl(imgUrl) : imgUrl;
+            var imgTag = imgUrl ? '<img src="' + resolvedImgUrl + '" style="width: 48px; height: 32px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">' : '<span style="font-size:11px; color:var(--text-muted)">Không có</span>';
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
                     '<td style="padding: 12px 16px;">' + imgTag + '</td>' +
                     '<td style="padding: 12px 16px;"><span class="field__badge field__badge--text">' + p.tag + '</span></td>' +
@@ -918,7 +920,7 @@
               var previewImg = document.getElementById('projModalPreviewImg');
               var fileNameSpan = document.getElementById('projModalFileName');
               if (image) {
-                previewImg.src = image;
+                previewImg.src = window.getAssetUrl ? window.getAssetUrl(image) : image;
                 previewDiv.style.display = 'block';
                 fileNameSpan.textContent = image.split('/').pop();
               } else {

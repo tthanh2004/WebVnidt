@@ -421,7 +421,7 @@
       'assets/canh-bao-thien-tai-ngu-truong.jpg'
     ];
     projectsGrid.innerHTML = projects.map((p, index) => {
-      const img = p.imageUrl || defaultImages[index % defaultImages.length];
+      const img = p.imageUrl ? (window.getAssetUrl ? window.getAssetUrl(p.imageUrl) : p.imageUrl) : defaultImages[index % defaultImages.length];
       return `
         <div class="project-card reveal visible" style="--i:${index}">
           <img src="${img}" alt="${p.name}" loading="lazy">
