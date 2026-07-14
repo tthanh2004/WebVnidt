@@ -3,13 +3,14 @@ const argon2 = require('argon2');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Seeding database...');
+  console.log('Checking database status...');
+  const userCount = await prisma.user.count();
+  if (userCount > 0) {
+    console.log('Database already has data. Skipping seeding.');
+    return;
+  }
 
-  // Clear existing data (in order of relations)
-  await prisma.news.deleteMany({});
-  await prisma.project.deleteMany({});
-  await prisma.media.deleteMany({});
-  await prisma.user.deleteMany({});
+  console.log('Seeding database...');
 
   // 1. Create a Default Admin User
   const passwordHash = await argon2.hash('VNiDT@2026!');
