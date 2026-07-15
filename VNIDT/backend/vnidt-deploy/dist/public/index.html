@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNiDT — Tài Nguyên Số Của Bạn | Chuyển Đổi Số & GIS</title>
+  <meta name="description" content="CTCP Đổi mới Sáng tạo và Chuyển đổi số VN (VNiDT) — Đối tác chiến lược trong chuyển đổi số, GIS, WebGIS. Kiến tạo hệ sinh thái số toàn diện cho chính phủ và doanh nghiệp.">
+  <meta name="keywords" content="VNiDT, chuyển đổi số, GIS, WebGIS, cơ sở dữ liệu, quản lý tài nguyên môi trường, Việt Nam">
+  <meta name="author" content="VNiDT">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="VNiDT — Tài Nguyên Số Của Bạn">
+  <meta property="og:description" content="Kiến tạo tầm nhìn chiến lược từ dữ liệu. Giải pháp GIS & Chuyển đổi số cho chính phủ và doanh nghiệp.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles_enterprise.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237C3AED'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='16' fill='%23FFFFF0'%3EV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="loader">
+    <div class="loader__spinner"></div>
+    <div class="loader__text">Khởi tạo nền tảng số...</div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar__inner">
+      <a href="#home" class="navbar__logo" aria-label="VNiDT Home">
+        <img src="assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 47px; width: auto; object-fit: contain;">
+      </a>
+
+      <div class="navbar__links" id="navLinks">
+        <a href="#home" class="navbar__link active" data-section="home">Trang Chủ</a>
+        <a href="#about" class="navbar__link" data-section="about">Giới Thiệu</a>
+        <a href="#solutions" class="navbar__link" data-section="solutions">Giải Pháp</a>
+        <a href="#projects" class="navbar__link" data-section="projects">Dự Án</a>
+        <a href="#news" class="navbar__link" data-section="news">Tin Tức</a>
+        <a href="#contact" class="navbar__link" data-section="contact">Liên Hệ</a>
+      </div>
+
+      <a href="#contact" class="btn btn--primary navbar__cta">
+        Tư Vấn Miễn Phí
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile Navigation">
+    <a href="#home" class="mobile-menu__link">Trang Chủ</a>
+    <a href="#about" class="mobile-menu__link">Giới Thiệu</a>
+    <a href="#solutions" class="mobile-menu__link">Giải Pháp</a>
+    <a href="#projects" class="mobile-menu__link">Dự Án</a>
+    <a href="#news" class="mobile-menu__link">Tin Tức</a>
+    <a href="#contact" class="mobile-menu__link">Liên Hệ</a>
+    <a href="#contact" class="btn btn--primary" style="margin-top:1rem">Tư Vấn Miễn Phí</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <video autoplay loop muted playsinline class="hero__video-bg">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-with-glowing-nodes-92040-large.mp4" type="video/mp4">
+    </video>
+    <div class="hero__video-overlay"></div>
+    <div class="hero__grid-bg" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__wrapper">
+        <div class="hero__content">
+          <div class="hero__label">
+            <span class="pulse"></span>
+            <span data-edit="hero_badge">GIS & Digital Transformation Platform</span>
+          </div>
+
+          <h1 class="hero__title" data-edit="hero_title">
+            VNiDT —<br>
+            <span class="gradient-text">Tài nguyên số</span> của bạn.
+          </h1>
+
+          <p class="hero__subtitle" data-edit="hero_subtitle">
+            Kiến tạo tầm nhìn chiến lược từ dữ liệu. Chúng tôi đồng hành cùng chính phủ và doanh nghiệp trong kỷ nguyên số hóa, biến thách thức thành lợi thế cạnh tranh thông qua các giải pháp công nghệ đột phá.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary btn--lg">
+              <span data-edit="hero_cta1">Yêu Cầu Tư Vấn Chuyển Đổi Số</span>
+              <span class="btn__arrow">→</span>
+            </a>
+            <a href="#solutions" class="btn btn--secondary btn--lg" data-edit="hero_cta2">
+              Khám Phá Giải Pháp
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual-container">
+          <div class="hero__visual-glow"></div>
+          <img src="assets/hero_illustration.jpg" alt="VNiDT GIS & Digital Twin Platform" class="hero__visual-img">
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Cuộn xuống</span>
+      <svg class="hero__scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px; margin-top: 4px; color: var(--color-primary);"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+  </section>
+
+
+  <!-- ===== INTRODUCTION ===== -->
+  <section class="intro section--surface" id="intro">
+    <div class="container">
+      <div class="intro__grid">
+        <div class="intro__text reveal--left">
+          <span class="section-label" data-edit="intro_label">Giới thiệu</span>
+          <h2 class="section-title" data-edit="intro_title">Kiến tạo hệ sinh thái <span class="accent-text">số toàn diện</span></h2>
+          <p data-edit="intro_p1">Chào mừng bạn đến với CTCP Đổi mới Sáng tạo và Chuyển đổi số VN (VN Innovation & Digital Transformation Joint Stock Company – VNiDT).</p>
+          <p data-edit="intro_p2">Chúng tôi không chỉ cung cấp công nghệ, chúng tôi <span class="highlight">kiến tạo hệ sinh thái số toàn diện</span>. Với định hướng phát triển bền vững, VNiDT tự hào là đối tác chiến lược, cung cấp các nền tảng thông minh giúp khai thác tối đa sức mạnh của dữ liệu không gian và quản trị vận hành.</p>
+          <a href="#solutions" class="btn btn--secondary" style="margin-top:var(--sp-6)">
+            <span data-edit="intro_cta">Tìm hiểu giải pháp</span>
+            <span class="btn__arrow">→</span>
+          </a>
+        </div>
+
+        <div class="intro__visual reveal--right">
+          <div class="intro__image-wrap">
+            <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Hệ thống quản lý thông minh VNiDT - Dashboard GIS" loading="lazy">
+          </div>
+          <div class="intro__float-card">
+            <div class="stat-number" data-count="50" data-suffix="+">0</div>
+            <div class="stat-label" data-edit="intro_stat_label">Dự án đã triển khai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CORE VALUES ===== -->
+  <section class="values section--base" id="values">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label" style="justify-content:center" data-edit="values_label">Giá trị cốt lõi</span>
+        <h2 class="section-title" data-edit="values_title">Nền tảng của <span class="accent-text">sự khác biệt</span></h2>
+        <p class="section-subtitle" style="margin:0 auto" data-edit="values_subtitle">Mọi giải pháp của chúng tôi đều xoay quanh các triết lý cốt lõi, tạo nên sự khác biệt vượt trội trong mỗi dự án.</p>
+      </div>
+
+      <div class="values__grid stagger">
+        <!-- Value 1 -->
+        <div class="glass-card reveal" style="--i:0">
+          <div class="glass-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h3 class="glass-card__title" data-edit="values_c1_title">Kết nối – Chia sẻ</h3>
+          <p class="glass-card__text" data-edit="values_c1_text">Tạo ra sự liên kết xuyên suốt giữa các phòng ban, hệ thống và con người, giúp tối ưu hóa chi phí và thời gian vận hành.</p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="glass-card reveal" style="--i:1">
+          <div class="glass-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="glass-card__title" data-edit="values_c2_title">Văn hóa CĐS</h3>
+          <p class="glass-card__text" data-edit="values_c2_text">Lan tỏa tư duy đổi mới trong từng tổ chức, biến chuyển đổi số thành văn hóa vận hành bền vững và hiệu quả.</p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="glass-card reveal" style="--i:2">
+          <div class="glass-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.24 7.76-2.12 2.12"/><path d="M20 12h-4"/><path d="m16.24 16.24-2.12-2.12"/><path d="M12 20v-4"/><path d="m7.76 16.24 2.12-2.12"/><path d="M4 12h4"/><path d="m7.76 7.76 2.12 2.12"/></svg>
+          </div>
+          <h3 class="glass-card__title" data-edit="values_c3_title">Trải nghiệm CĐS</h3>
+          <p class="glass-card__text" data-edit="values_c3_text">Biến các khái niệm công nghệ phức tạp thành công cụ quản lý dữ liệu linh hoạt, thân thiện và hiệu quả cho người dùng.</p>
+        </div>
+
+        <!-- Value 4 -->
+        <div class="glass-card reveal" style="--i:3">
+          <div class="glass-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="glass-card__title" data-edit="values_c4_title">Tầm nhìn CĐS</h3>
+          <p class="glass-card__text" data-edit="values_c4_text">Hiện thực hóa tầm nhìn chiến lược, giúp doanh nghiệp nắm quyền chủ động trong mọi quyết định nhờ dữ liệu minh bạch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== STATS ===== -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat-item reveal" style="--i:0">
+          <div class="stat-item__number"><span data-count="50" data-edit="stats_1_number">0</span><span class="suffix" data-edit="stats_1_suffix">+</span></div>
+          <div class="stat-item__divider"></div>
+          <div class="stat-item__label" data-edit="stats_1_label">Dự án hoàn thành</div>
+        </div>
+        <div class="stat-item reveal" style="--i:1">
+          <div class="stat-item__number"><span data-count="30" data-edit="stats_2_number">0</span><span class="suffix" data-edit="stats_2_suffix">+</span></div>
+          <div class="stat-item__divider"></div>
+          <div class="stat-item__label" data-edit="stats_2_label">Đối tác chiến lược</div>
+        </div>
+        <div class="stat-item reveal" style="--i:2">
+          <div class="stat-item__number"><span data-count="4" data-edit="stats_3_number">0</span><span class="suffix" data-edit="stats_3_suffix"></span></div>
+          <div class="stat-item__divider"></div>
+          <div class="stat-item__label" data-edit="stats_3_label">Nền tảng WebGIS</div>
+        </div>
+        <div class="stat-item reveal" style="--i:3">
+          <div class="stat-item__number"><span data-count="10" data-edit="stats_4_number">0</span><span class="suffix" data-edit="stats_4_suffix">+</span></div>
+          <div class="stat-item__divider"></div>
+          <div class="stat-item__label" data-edit="stats_4_label">Năm kinh nghiệm</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section--surface" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__text reveal--left">
+          <span class="section-label" data-edit="about_label">Về chúng tôi</span>
+          <h2 class="section-title" data-edit="about_title">Đơn vị tiên phong <span class="accent-text">Đổi Mới Sáng Tạo</span></h2>
+          <p data-edit="about_p1">CTCP Đổi mới Sáng tạo và Chuyển đổi số VN ra đời với khát vọng biến mọi tài nguyên thông tin trở thành tài sản vô giá. Chúng tôi định vị mình là người dẫn đường đáng tin cậy trong hành trình chuyển đổi số đầy thách thức.</p>
+          <p data-edit="about_p2">Sự am hiểu sâu sắc về kiến trúc hệ thống và nhu cầu thực tiễn giúp VNiDT luôn đưa ra những giải pháp <span class="highlight">"may đo" hoàn hảo nhất</span> cho từng ngành nghề trọng điểm.</p>
+
+          <div class="about__features">
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+              </div>
+              <div>
+                <h4 data-edit="about_f1_title">Cơ sở dữ liệu GIS</h4>
+                <p data-edit="about_f1_text">Linh hoạt, chuyên sâu, tối ưu hóa quản lý dữ liệu không gian</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h4 data-edit="about_f2_title">Nền tảng WebGIS</h4>
+                <p data-edit="about_f2_text">Cung cấp và khai thác thông tin không gian số toàn diện</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+              </div>
+              <div>
+                <h4 data-edit="about_f3_title">Ứng dụng phân tích</h4>
+                <p data-edit="about_f3_text">App phân tích dữ liệu trực quan, hỗ trợ ra quyết định thông minh</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn--accent" style="margin-top:var(--sp-8)">
+            Tải Hồ Sơ Năng Lực
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+
+        <div class="about__visual reveal--right">
+          <div class="about__visual-card">
+            <blockquote class="about__quote" data-edit="about_quote">
+              "Chúng tôi mang đến trải nghiệm chuyển đổi số toàn diện, biến các khái niệm công nghệ phức tạp thành công cụ quản lý dữ liệu linh hoạt, thân thiện và hiệu quả."
+            </blockquote>
+            <div style="margin-top:var(--sp-8); display:flex; gap:var(--sp-6); flex-wrap:wrap">
+              <div>
+                <div class="stat-number" style="font-size:1.5rem; font-weight:800; color:var(--text-primary)">ISO 9001</div>
+                <div class="stat-label" style="font-size:var(--fs-xs); color:var(--text-muted)">Tiêu chuẩn quốc tế</div>
+              </div>
+              <div>
+                <div class="stat-number" style="font-size:1.5rem; font-weight:800; color:var(--text-primary)">VN-2000</div>
+                <div class="stat-label" style="font-size:var(--fs-xs); color:var(--text-muted)">Hệ quy chiếu quốc gia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== SOLUTIONS ===== -->
+  <section class="solutions section--base" id="solutions">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label" style="justify-content:center" data-edit="sol_label">Giải pháp</span>
+        <h2 class="section-title" data-edit="sol_title">Giải Pháp Công Nghệ — <span class="accent-text">Linh Hoạt, Chuyên Sâu</span></h2>
+        <p class="section-subtitle" style="margin:0 auto" data-edit="sol_subtitle">Từ số hóa tài liệu vật lý đến xây dựng cơ sở dữ liệu không gian đa lớp trên nền tảng đám mây.</p>
+      </div>
+
+      <!-- Two Pillars -->
+      <div class="solutions__pillars">
+        <div class="pillar-card reveal--left">
+          <div class="pillar-card__num" data-edit="sol_p1_num">TRỤC 01</div>
+          <h3 class="pillar-card__title" data-edit="sol_p1_title">Dịch vụ chuyển đổi số lõi</h3>
+          <p class="pillar-card__text" data-edit="sol_p1_text">Số hóa dữ liệu và quy trình — chuyển đổi hoàn toàn thông tin từ định dạng vật lý sang kỹ thuật số, tạo nền tảng cho mọi hoạt động quản trị thông minh.</p>
+        </div>
+        <div class="pillar-card reveal--right">
+          <div class="pillar-card__num" data-edit="sol_p2_num">TRỤC 02</div>
+          <h3 class="pillar-card__title" data-edit="sol_p2_title">Hệ thống nền tảng thông minh</h3>
+          <p class="pillar-card__text" data-edit="sol_p2_text">GIS, WebGIS và ứng dụng di động — bộ công cụ phân tích dữ liệu trực quan, hỗ trợ ra quyết định theo thời gian thực trên mọi thiết bị.</p>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="products-grid stagger">
+        <!-- Product 1 -->
+        <div class="product-card reveal" style="--i:0">
+          <div class="product-card__image">
+            <img src="assets/xay-dung-co-so-du-lieu-tnmt.jpg" alt="CSDL TNMT" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag" data-edit="prod_1_tag">WebGIS · CSDL</span>
+            <h3 class="product-card__title" data-edit="prod_1_title">Cơ sở dữ liệu TNMT</h3>
+            <p class="product-card__text" data-edit="prod_1_text">Xây dựng cơ sở dữ liệu tài nguyên môi trường và ứng dụng khai thác trên nền tảng web/app. Tích hợp dữ liệu đa ngành theo chuẩn quốc gia và quốc tế.</p>
+            <a href="#contact" class="product-card__link">Tìm hiểu thêm <span>→</span></a>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card reveal" style="--i:1">
+          <div class="product-card__image">
+            <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Quản lý thủy sản" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag" data-edit="prod_2_tag">Smart Management</span>
+            <h3 class="product-card__title" data-edit="prod_2_title">Quản lý thông minh thủy sản</h3>
+            <p class="product-card__text" data-edit="prod_2_text">Hệ thống quản lý thông minh phục vụ phát triển bền vững nuôi thủy sản. Theo dõi 4,820 tọa độ lồng bè thời gian thực trên bản đồ GIS.</p>
+            <a href="#contact" class="product-card__link">Tìm hiểu thêm <span>→</span></a>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card reveal" style="--i:2">
+          <div class="product-card__image">
+            <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="Quản lý nguồn thải" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag" data-edit="prod_3_tag">Môi trường</span>
+            <h3 class="product-card__title" data-edit="prod_3_title">Quản lý nguồn thải</h3>
+            <p class="product-card__text" data-edit="prod_3_text">Hệ thống quản lý thông minh giám sát nguồn thải trên nền tảng web/app. Phân quyền chi tiết, đảm bảo an toàn thông tin và tuân thủ quy chuẩn.</p>
+            <a href="#contact" class="product-card__link">Tìm hiểu thêm <span>→</span></a>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card reveal" style="--i:3">
+          <div class="product-card__image">
+            <img src="assets/canh-bao-thien-tai-ngu-truong.jpg" alt="Cảnh báo thiên tai" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__tag" data-edit="prod_4_tag">AI · Mobile</span>
+            <h3 class="product-card__title" data-edit="prod_4_title">Cảnh báo thiên tai & ngư trường</h3>
+            <p class="product-card__text" data-edit="prod_4_text">Hệ thống cảnh báo thiên tai và hỗ trợ ngư trường thông minh. Dự báo AI, theo dõi bão thời gian thực, cung cấp thông tin ngư trường trên mobile.</p>
+            <a href="#contact" class="product-card__link">Tìm hiểu thêm <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== GIS DASHBOARD PREVIEW ===== -->
+  <section class="dashboard" id="dashboard">
+    <div class="container">
+      <div class="dashboard__grid">
+        <div class="dashboard__text reveal--left">
+          <span class="section-label" data-edit="dash_label">Nền tảng</span>
+          <h2 class="section-title" data-edit="dash_title">Trung tâm Chỉ huy <span class="accent-text">GIS thời gian thực</span></h2>
+          <p data-edit="dash_desc" style="margin-bottom:var(--sp-6)">Theo dõi, phân tích và quản lý toàn bộ hệ sinh thái của bạn thông qua một giao diện tổng quan duy nhất với dữ liệu cập nhật theo từng giây.</p>
+          
+          <div class="dashboard__features">
+            <div class="dashboard__feature">
+              <div class="dashboard__feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </div>
+              <h4 data-edit="dash_f1">Dữ liệu vệ tinh AI</h4>
+            </div>
+            <div class="dashboard__feature">
+              <div class="dashboard__feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10.00 10.00 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h4 data-edit="dash_f2">Cảnh báo tự động</h4>
+            </div>
+            <div class="dashboard__feature">
+              <div class="dashboard__feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              </div>
+              <h4 data-edit="dash_f3">Báo cáo đa chiều</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard__mockup reveal--right">
+          <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="VNiDT GIS Dashboard UI">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects section--surface" id="projects">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label" style="justify-content:center" data-edit="proj_label">Dự án tiêu biểu</span>
+        <h2 class="section-title" data-edit="proj_title">Dấu ấn <span class="accent-text">trên khắp Việt Nam</span></h2>
+        <p class="section-subtitle" style="margin:0 auto" data-edit="proj_subtitle">Xây dựng thành công các hệ thống CSDL tuân thủ nghiêm ngặt theo chuẩn quốc gia & quốc tế, đáp ứng tích hợp dữ liệu đa ngành cho các dự án quy mô lớn.</p>
+      </div>
+
+      <div class="projects__grid stagger" id="projects-grid">
+        <div class="project-card reveal" style="--i:0">
+          <img src="assets/xay-dung-co-so-du-lieu-tnmt.jpg" alt="Dự án CSDL TNMT" loading="lazy">
+          <div class="project-card__overlay">
+            <span class="project-card__tag" data-edit="proj_1_tag">CSDL · GIS</span>
+            <h3 class="project-card__title" data-edit="proj_1_title">CSDL Tài Nguyên Môi Trường</h3>
+            <p class="project-card__desc" data-edit="proj_1_desc">Số hóa và xây dựng cơ sở dữ liệu tài nguyên môi trường theo chuẩn quốc gia, phục vụ quản lý đa ngành trên nền tảng WebGIS.</p>
+          </div>
+        </div>
+
+        <div class="project-card reveal" style="--i:1">
+          <img src="assets/he-thong-quan-ly-thong-minh.jpg" alt="Dự án thủy sản" loading="lazy">
+          <div class="project-card__overlay">
+            <span class="project-card__tag" data-edit="proj_2_tag">Thủy sản · Quảng Ninh</span>
+            <h3 class="project-card__title" data-edit="proj_2_title">Quản Lý Thủy Sản Vịnh Bắc Bộ</h3>
+            <p class="project-card__desc" data-edit="proj_2_desc">Triển khai hệ thống giám sát 1,245 cơ sở giống, 4,820 ha mặt biển nuôi cấp phép với 158 vùng nuôi chuẩn VietGAP.</p>
+          </div>
+        </div>
+
+        <div class="project-card reveal" style="--i:2">
+          <img src="assets/quan-ly-nguon-thai-web-app.jpg" alt="Dự án nguồn thải" loading="lazy">
+          <div class="project-card__overlay">
+            <span class="project-card__tag" data-edit="proj_3_tag">Môi trường · Web/App</span>
+            <h3 class="project-card__title" data-edit="proj_3_title">Giám Sát Nguồn Thải Quốc Gia</h3>
+            <p class="project-card__desc" data-edit="proj_3_desc">Xây dựng nền tảng web/app quản lý nguồn thải với hệ thống cảnh báo ô nhiễm vượt giới hạn và báo cáo tự động.</p>
+          </div>
+        </div>
+
+        <div class="project-card reveal" style="--i:3">
+          <img src="assets/canh-bao-thien-tai-ngu-truong.jpg" alt="Dự án Biển Đông" loading="lazy">
+          <div class="project-card__overlay">
+            <span class="project-card__tag" data-edit="proj_4_tag">AI · Biển Đông</span>
+            <h3 class="project-card__title" data-edit="proj_4_title">Cảnh Báo Thiên Tai Biển Đông</h3>
+            <p class="project-card__desc" data-edit="proj_4_desc">Ứng dụng AI dự báo bão, theo dõi thời tiết thời gian thực và hỗ trợ thông tin ngư trường cho ngư dân trên Biển Đông.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label" style="justify-content:center" data-edit="testi_label">Khách hàng nói gì</span>
+        <h2 class="section-title" data-edit="testi_title">Sự tin tưởng từ các <span class="accent-text">Đối tác chiến lược</span></h2>
+      </div>
+
+      <div class="testimonials__grid stagger">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal" style="--i:0">
+          <svg class="testimonial__quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          <p class="testimonial__text" data-edit="testi_1_quote">Giải pháp WebGIS của VNiDT đã thay đổi hoàn toàn cách chúng tôi quản lý tài nguyên. Dữ liệu trực quan, chính xác và hệ thống vận hành cực kỳ trơn tru.</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">N</div>
+            <div class="testimonial__info">
+              <h4 data-edit="testi_1_name">Ông Nguyễn Hải Đăng</h4>
+              <p data-edit="testi_1_role">Giám đốc Sở TN&MT</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal" style="--i:1">
+          <svg class="testimonial__quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          <p class="testimonial__text" data-edit="testi_2_quote">Hệ thống cảnh báo thiên tai và theo dõi tàu cá qua AI giúp giảm thiểu tối đa rủi ro trên biển. Đây là một bước tiến công nghệ đột phá cho ngành thủy sản.</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">T</div>
+            <div class="testimonial__info">
+              <h4 data-edit="testi_2_name">Bà Trần Thu Hà</h4>
+              <p data-edit="testi_2_role">Trưởng ban Quản lý Cảng</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal" style="--i:2">
+          <svg class="testimonial__quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          <p class="testimonial__text" data-edit="testi_3_quote">Đội ngũ chuyên gia của VNiDT không chỉ cung cấp phần mềm mà còn định hướng cho chúng tôi xây dựng một văn hóa số minh bạch và hiện đại.</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">L</div>
+            <div class="testimonial__info">
+              <h4 data-edit="testi_3_name">Ông Lê Minh Tuấn</h4>
+              <p data-edit="testi_3_role">CEO Tập đoàn Nam Phương</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== NEWS ===== -->
+  <section class="news section--base" id="news">
+    <div class="container">
+      <div class="flex--between reveal" style="display:flex; align-items:flex-end; flex-wrap:wrap; gap:var(--sp-6); margin-bottom:var(--sp-4)">
+        <div>
+          <span class="section-label" data-edit="news_label">Tin tức & Sự kiện</span>
+          <h2 class="section-title" style="margin-bottom:0" data-edit="news_title">Cập nhật <span class="accent-text">mới nhất</span></h2>
+        </div>
+      </div>
+
+      <div class="news__grid stagger" id="news-grid">
+        <!-- News 1 -->
+        <div class="news-card reveal" style="--i:0">
+          <div class="news-card__image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+              <span data-edit="news_1_date">15/05/2026</span>
+            </div>
+            <h3 class="news-card__title" data-edit="news_1_title">VNiDT triển khai thành công hệ thống CSDL Tài nguyên Môi trường</h3>
+            <p class="news-card__excerpt" data-edit="news_1_excerpt">Hệ thống cơ sở dữ liệu tài nguyên môi trường trên nền GIS đã được triển khai thành công, đáp ứng tiêu chuẩn quốc tế về tích hợp dữ liệu đa ngành.</p>
+          </div>
+        </div>
+
+        <!-- News 2 -->
+        <div class="news-card reveal" style="--i:1">
+          <div class="news-card__image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+              <span data-edit="news_2_date">02/04/2026</span>
+            </div>
+            <h3 class="news-card__title" data-edit="news_2_title">Ra mắt ứng dụng cảnh báo thiên tai và hỗ trợ ngư trường AI</h3>
+            <p class="news-card__excerpt" data-edit="news_2_excerpt">Ứng dụng mobile tích hợp AI dự báo bão, theo dõi thời tiết thời gian thực đã chính thức ra mắt, hỗ trợ hàng nghìn ngư dân trên Biển Đông.</p>
+          </div>
+        </div>
+
+        <!-- News 3 -->
+        <div class="news-card reveal" style="--i:2">
+          <div class="news-card__image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="news-card__body">
+            <div class="news-card__date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+              <span data-edit="news_3_date">18/03/2026</span>
+            </div>
+            <h3 class="news-card__title" data-edit="news_3_title">Ký kết hợp tác chiến lược chuyển đổi số với các Sở ban ngành</h3>
+            <p class="news-card__excerpt" data-edit="news_3_excerpt">VNiDT chính thức trở thành đối tác chiến lược cung cấp giải pháp chuyển đổi số toàn diện cho nhiều Sở ban ngành trên toàn quốc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="cta-band" id="cta-band">
+    <div class="cta-band__glow cta-band__glow--1" aria-hidden="true"></div>
+    <div class="cta-band__glow cta-band__glow--2" aria-hidden="true"></div>
+    <div class="container" style="position:relative; z-index:1">
+      <div class="reveal">
+        <h2 class="cta-band__title" data-edit="cta_title">Sẵn sàng bước vào kỷ nguyên số cùng <span class="accent-text">VNiDT</span>?</h2>
+        <p class="cta-band__text" data-edit="cta_text">Hãy để chúng tôi trở thành "Tài nguyên số của bạn", cùng nhau chia sẻ, kết nối và hiện thực hóa các tầm nhìn chiến lược.</p>
+        <a href="#contact" class="btn btn--primary btn--lg">
+          <span data-edit="cta_button">Kết Nối Với Chúng Tôi Ngay</span>
+          <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section--surface" id="contact">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label" style="justify-content:center" data-edit="contact_label">Liên hệ</span>
+        <h2 class="section-title" data-edit="contact_title">Kết nối <span class="accent-text">không giới hạn</span></h2>
+        <p class="section-subtitle" style="margin:0 auto" data-edit="contact_subtitle">Bắt đầu hành trình chuyển đổi số của bạn cùng các chuyên gia hàng đầu từ VNiDT. Mọi sự thay đổi lớn đều bắt đầu từ một cuộc trò chuyện.</p>
+      </div>
+
+      <div class="contact__grid">
+        <!-- Form -->
+        <div class="contact__form-wrap reveal--left">
+          <h3 style="font-size:var(--fs-h3); margin-bottom:var(--sp-6)" data-edit="contact_form_title">Gửi yêu cầu tư vấn</h3>
+          <form id="contactForm" novalidate>
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="contact-name">Họ và Tên *</label>
+                <input type="text" class="form__input" id="contact-name" name="name" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="contact-email">Email *</label>
+                <input type="email" class="form__input" id="contact-email" name="email" placeholder="email@donvi.gov.vn" required>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="contact-phone">Số điện thoại</label>
+                <input type="tel" class="form__input" id="contact-phone" name="phone" placeholder="09x xxx xxxx">
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="contact-org">Đơn vị / Tổ chức</label>
+                <input type="text" class="form__input" id="contact-org" name="organization" placeholder="Tên cơ quan, doanh nghiệp">
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group form__group--full">
+                <label class="form__label" for="contact-interest">Lĩnh vực quan tâm *</label>
+                <select class="form__select" id="contact-interest" name="sector" required>
+                  <option value="" disabled selected>Chọn lĩnh vực</option>
+                  <option value="gis">Cơ sở dữ liệu GIS</option>
+                  <option value="webgis">Nền tảng WebGIS</option>
+                  <option value="aquaculture">Quản lý thủy sản</option>
+                  <option value="environment">Quản lý nguồn thải / Môi trường</option>
+                  <option value="disaster">Cảnh báo thiên tai</option>
+                  <option value="digital">Tư vấn chuyển đổi số</option>
+                  <option value="other">Khác</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group form__group--full">
+                <label class="form__label" for="contact-message">Nội dung yêu cầu *</label>
+                <textarea class="form__textarea" id="contact-message" name="message" placeholder="Mô tả ngắn gọn nhu cầu của bạn..." required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--accent btn--lg form__submit" id="submitBtn">
+              Gửi Yêu Cầu Tư Vấn
+              <span class="btn__arrow">→</span>
+            </button>
+            <p class="form__note" data-edit="contact_form_note">Chúng tôi sẽ gọi lại cho bạn trong 30 phút.</p>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact__info reveal--right">
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Trụ sở chính</h4>
+              <p data-edit="contact_address">95 Chùa Bộc, Kim Liên, Đống Đa, Hà Nội, Việt Nam</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Hotline</h4>
+              <p data-edit="contact_phone">+84 98 902 6438</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p data-edit="contact_email">vnidt.jsc@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Giờ làm việc</h4>
+              <p data-edit="contact_hours">Thứ 2 – Thứ 6: 8:00 – 17:30</p>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="contact__map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.5!2d105.828!3d21.008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z4oCcOTUgQ2jDuWEgQuG7mWMsIEtpbSBMacOqbiI!5e0!3m2!1svi!2svn!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="VNiDT office location on Google Maps"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div>
+          <a href="#home" class="navbar__logo" style="margin-bottom:var(--sp-4); display:inline-flex">
+            <img src="assets/Logo_transparent.png" alt="VNiDT Logo" style="height: 62px; width: auto; object-fit: contain;">
+          </a>
+          <p class="footer__brand-text" data-edit="footer_brand">CTCP Đổi mới Sáng tạo và Chuyển đổi số VN. Kiến tạo hệ sinh thái số toàn diện cho chính phủ và doanh nghiệp Việt Nam.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer__heading">Điều hướng</h4>
+          <div class="footer__links">
+            <a href="#home">Trang Chủ</a>
+            <a href="#about">Giới Thiệu</a>
+            <a href="#solutions">Giải Pháp</a>
+            <a href="#projects">Dự Án</a>
+            <a href="#news">Tin Tức</a>
+            <a href="#contact">Liên Hệ</a>
+          </div>
+        </div>
+
+        <!-- Solutions -->
+        <div>
+          <h4 class="footer__heading">Giải pháp</h4>
+          <div class="footer__links">
+            <a href="#solutions">CSDL Tài nguyên MT</a>
+            <a href="#solutions">Quản lý Thủy sản</a>
+            <a href="#solutions">Quản lý Nguồn thải</a>
+            <a href="#solutions">Cảnh báo Thiên tai</a>
+            <a href="#solutions">Tư vấn CĐS</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="footer__heading">Liên hệ</h4>
+          <div class="footer__links">
+            <a href="tel:+84989026438">+84 98 902 6438</a>
+            <a href="mailto:vnidt.jsc@gmail.com">vnidt.jsc@gmail.com</a>
+            <a>95 Chùa Bộc, Hà Nội</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-edit="footer_copyright">© 2026 VNiDT. Bảo lưu mọi quyền.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:vnidt.jsc@gmail.com" class="footer__social" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="config.js"></script>
+  <script src="content.js"></script>
+  <script>
+    // Hide loader when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500); // 500ms delay for visual effect
+    });
+
+    (async function() {
+      await window.VNiDTCMS.applyToPageAsync();
+      
+      // Khởi tạo các module khác nếu cần sau khi load nội dung
+      if(window.initMap) {
+        // initMap() ...
+      }
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
