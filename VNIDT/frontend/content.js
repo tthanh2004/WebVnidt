@@ -18,9 +18,9 @@
     { id: 'about',        label: 'Về Chúng Tôi',      icon: 'VE' },
     { id: 'solutions',    label: 'Giải Pháp',         icon: 'GP' },
     { id: 'dashboard',    label: 'GIS Dashboard',     icon: 'DB' },
-    { id: 'projects',     label: 'Dự Án',             icon: 'DA' },
-    { id: 'testimonials', label: 'Khách Hàng',        icon: 'KH' },
-    { id: 'news',         label: 'Tin Tức',           icon: 'TT' },
+    { id: 'projects_static', label: 'Dự Án (Tiêu đề)', icon: 'DA' },
+    { id: 'testimonials',    label: 'Khách Hàng',        icon: 'KH' },
+    { id: 'news_static',     label: 'Tin Tức (Tiêu đề)', icon: 'TT' },
     { id: 'cta',          label: 'CTA Banner',        icon: 'CT' },
     { id: 'contact',      label: 'Liên Hệ',           icon: 'LH' },
     { id: 'footer',       label: 'Footer',            icon: 'FT' },
@@ -122,21 +122,9 @@
     { key: 'dash_f3',           section: 'dashboard', label: 'Tính năng 3',               type: 'text',     default: 'Báo cáo đa chiều' },
 
     // ─── PROJECTS ───
-    { key: 'proj_label',        section: 'projects', label: 'Nhãn section',              type: 'text',     default: 'Dự án tiêu biểu' },
-    { key: 'proj_title',        section: 'projects', label: 'Tiêu đề (HTML)',            type: 'html',     default: 'Dấu ấn <span class="accent-text">trên khắp Việt Nam</span>' },
-    { key: 'proj_subtitle',     section: 'projects', label: 'Mô tả',                     type: 'textarea', default: 'Xây dựng thành công các hệ thống CSDL tuân thủ nghiêm ngặt theo chuẩn quốc gia & quốc tế, đáp ứng tích hợp dữ liệu đa ngành cho các dự án quy mô lớn.' },
-    { key: 'proj_1_tag',        section: 'projects', label: 'Dự án 1 — Tag',             type: 'text',     default: 'CSDL · GIS' },
-    { key: 'proj_1_title',      section: 'projects', label: 'Dự án 1 — Tiêu đề',        type: 'text',     default: 'CSDL Tài Nguyên Môi Trường' },
-    { key: 'proj_1_desc',       section: 'projects', label: 'Dự án 1 — Mô tả',          type: 'textarea', default: 'Số hóa và xây dựng cơ sở dữ liệu tài nguyên môi trường theo chuẩn quốc gia, phục vụ quản lý đa ngành trên nền tảng WebGIS.' },
-    { key: 'proj_2_tag',        section: 'projects', label: 'Dự án 2 — Tag',             type: 'text',     default: 'Thủy sản · Quảng Ninh' },
-    { key: 'proj_2_title',      section: 'projects', label: 'Dự án 2 — Tiêu đề',        type: 'text',     default: 'Quản Lý Thủy Sản Vịnh Bắc Bộ' },
-    { key: 'proj_2_desc',       section: 'projects', label: 'Dự án 2 — Mô tả',          type: 'textarea', default: 'Triển khai hệ thống giám sát 1,245 cơ sở giống, 4,820 ha mặt biển nuôi cấp phép với 158 vùng nuôi chuẩn VietGAP.' },
-    { key: 'proj_3_tag',        section: 'projects', label: 'Dự án 3 — Tag',             type: 'text',     default: 'Môi trường · Web/App' },
-    { key: 'proj_3_title',      section: 'projects', label: 'Dự án 3 — Tiêu đề',        type: 'text',     default: 'Giám Sát Nguồn Thải Quốc Gia' },
-    { key: 'proj_3_desc',       section: 'projects', label: 'Dự án 3 — Mô tả',          type: 'textarea', default: 'Xây dựng nền tảng web/app quản lý nguồn thải với hệ thống cảnh báo ô nhiễm vượt giới hạn và báo cáo tự động.' },
-    { key: 'proj_4_tag',        section: 'projects', label: 'Dự án 4 — Tag',             type: 'text',     default: 'AI · Biển Đông' },
-    { key: 'proj_4_title',      section: 'projects', label: 'Dự án 4 — Tiêu đề',        type: 'text',     default: 'Cảnh Báo Thiên Tai Biển Đông' },
-    { key: 'proj_4_desc',       section: 'projects', label: 'Dự án 4 — Mô tả',          type: 'textarea', default: 'Ứng dụng AI dự báo bão, theo dõi thời tiết thời gian thực và hỗ trợ thông tin ngư trường cho ngư dân trên Biển Đông.' },
+    { key: 'proj_label',        section: 'projects_static', label: 'Nhãn section',              type: 'text',     default: 'Dự án tiêu biểu' },
+    { key: 'proj_title',        section: 'projects_static', label: 'Tiêu đề (HTML)',            type: 'html',     default: 'Dấu ấn <span class="accent-text">trên khắp Việt Nam</span>' },
+    { key: 'proj_subtitle',     section: 'projects_static', label: 'Mô tả',                     type: 'textarea', default: 'Xây dựng thành công các hệ thống CSDL tuân thủ nghiêm ngặt theo chuẩn quốc gia & quốc tế, đáp ứng tích hợp dữ liệu đa ngành cho các dự án quy mô lớn.' },
 
     // ─── TESTIMONIALS ───
     { key: 'testi_label',       section: 'testimonials', label: 'Nhãn section',              type: 'text',     default: 'Khách hàng nói gì' },
@@ -152,17 +140,8 @@
     { key: 'testi_3_role',      section: 'testimonials', label: 'Khách 3 — Chức vụ',         type: 'text',     default: 'CEO Tập đoàn Nam Phương' },
 
     // ─── NEWS ───
-    { key: 'news_label',        section: 'news', label: 'Nhãn section',          type: 'text', default: 'Tin tức & Sự kiện' },
-    { key: 'news_title',        section: 'news', label: 'Tiêu đề (HTML)',        type: 'html', default: 'Cập nhật <span class="accent-text">mới nhất</span>' },
-    { key: 'news_1_date',       section: 'news', label: 'Tin 1 — Ngày',          type: 'text',     default: '15/05/2026' },
-    { key: 'news_1_title',      section: 'news', label: 'Tin 1 — Tiêu đề',      type: 'text',     default: 'VNiDT triển khai thành công hệ thống CSDL Tài nguyên Môi trường' },
-    { key: 'news_1_excerpt',    section: 'news', label: 'Tin 1 — Tóm tắt',      type: 'textarea', default: 'Hệ thống cơ sở dữ liệu tài nguyên môi trường trên nền GIS đã được triển khai thành công, đáp ứng tiêu chuẩn quốc tế về tích hợp dữ liệu đa ngành.' },
-    { key: 'news_2_date',       section: 'news', label: 'Tin 2 — Ngày',          type: 'text',     default: '02/04/2026' },
-    { key: 'news_2_title',      section: 'news', label: 'Tin 2 — Tiêu đề',      type: 'text',     default: 'Ra mắt ứng dụng cảnh báo thiên tai và hỗ trợ ngư trường AI' },
-    { key: 'news_2_excerpt',    section: 'news', label: 'Tin 2 — Tóm tắt',      type: 'textarea', default: 'Ứng dụng mobile tích hợp AI dự báo bão, theo dõi thời tiết thời gian thực đã chính thức ra mắt, hỗ trợ hàng nghìn ngư dân trên Biển Đông.' },
-    { key: 'news_3_date',       section: 'news', label: 'Tin 3 — Ngày',          type: 'text',     default: '18/03/2026' },
-    { key: 'news_3_title',      section: 'news', label: 'Tin 3 — Tiêu đề',      type: 'text',     default: 'Ký kết hợp tác chiến lược chuyển đổi số với các Sở ban ngành' },
-    { key: 'news_3_excerpt',    section: 'news', label: 'Tin 3 — Tóm tắt',      type: 'textarea', default: 'VNiDT chính thức trở thành đối tác chiến lược cung cấp giải pháp chuyển đổi số toàn diện cho nhiều Sở ban ngành trên toàn quốc.' },
+    { key: 'news_label',        section: 'news_static', label: 'Nhãn section',          type: 'text', default: 'Tin tức & Sự kiện' },
+    { key: 'news_title',        section: 'news_static', label: 'Tiêu đề (HTML)',        type: 'html', default: 'Cập nhật <span class="accent-text">mới nhất</span>' },
 
     // ─── CTA ───
     { key: 'cta_title',   section: 'cta', label: 'Tiêu đề (HTML)',  type: 'html',     default: 'Sẵn sàng bước vào kỷ nguyên số cùng <span class="accent-text">VNiDT</span>?' },
