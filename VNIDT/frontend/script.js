@@ -423,14 +423,14 @@
     projectsGrid.innerHTML = projects.map((p, index) => {
       const img = p.imageUrl ? (window.getAssetUrl ? window.getAssetUrl(p.imageUrl) : p.imageUrl) : defaultImages[index % defaultImages.length];
       return `
-        <div class="project-card reveal visible" style="--i:${index}">
+        <a href="project-detail.html?id=${p.id}" class="project-card reveal visible" style="--i:${index}">
           <img src="${img}" alt="${p.name}" loading="lazy">
           <div class="project-card__overlay">
             <span class="project-card__tag">${p.tag}</span>
             <h3 class="project-card__title">${p.name}</h3>
             <p class="project-card__desc">${p.description}</p>
           </div>
-        </div>
+        </a>
       `;
     }).join('');
   }
@@ -447,7 +447,7 @@
       const dateStr = new Date(n.publishedAt).toLocaleDateString('vi-VN');
       const icon = icons[index % icons.length];
       return `
-        <div class="news-card reveal visible" style="--i:${index}">
+        <a href="news-detail.html?slug=${n.slug}" class="news-card reveal visible" style="--i:${index}">
           <div class="news-card__image" style="color:var(--color-primary); background:rgba(var(--color-primary-rgb),0.05)">
             ${icon}
           </div>
@@ -459,7 +459,7 @@
             <h3 class="news-card__title">${n.name}</h3>
             <p class="news-card__excerpt">${n.description}</p>
           </div>
-        </div>
+        </a>
       `;
     }).join('');
   }

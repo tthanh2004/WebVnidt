@@ -13,6 +13,15 @@ export class ProjectsController {
     return { success: true, data: list };
   }
 
+  @Get(':id')
+  async getProject(@Param('id') id: string) {
+    const project = await this.projectsService.findOne(id);
+    if (!project) {
+      return { success: false, message: 'Không tìm thấy dự án.' };
+    }
+    return { success: true, data: project };
+  }
+
   @UseGuards(AuthGuard)
   @Post()
   async createProject(@Body() body: CreateProjectDto) {

@@ -21,9 +21,10 @@ export class NewsService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(slugOrId: string) {
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
     return this.prisma.news.findUnique({
-      where: { id },
+      where: isUuid ? { id: slugOrId } : { slug: slugOrId },
       include: {
         author: {
           select: {

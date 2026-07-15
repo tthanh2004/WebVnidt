@@ -13,6 +13,15 @@ export class NewsController {
     return { success: true, data: list };
   }
 
+  @Get(':slugOrId')
+  async getSingleNews(@Param('slugOrId') slugOrId: string) {
+    const news = await this.newsService.findOne(slugOrId);
+    if (!news) {
+      return { success: false, message: 'Không tìm thấy tin tức.' };
+    }
+    return { success: true, data: news };
+  }
+
   @UseGuards(AuthGuard)
   @Post()
   async createNews(@Body() body: CreateNewsDto, @Req() req: any) {

@@ -927,6 +927,12 @@ section {
   margin-top: var(--sp-12);
 }
 
+a.project-card, a.news-card {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
 .project-card {
   position: relative;
   border-radius: var(--r-lg);
