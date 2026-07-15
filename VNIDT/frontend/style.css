@@ -10,25 +10,25 @@
 /* ---------- 1. Custom Properties (Design Tokens) ---------- */
 :root {
   /* Primary Palette (Sea/Island Ocean Colors) */
-  --color-primary: #0F52BA; /* Sapphire Blue */
-  --color-primary-rgb: 15, 82, 186;
-  --color-secondary: #0D9488; /* Emerald Teal / Sea Green */
+  --color-primary: #0A2540; /* Deep Ocean Navy */
+  --color-primary-rgb: 10, 37, 64;
+  --color-secondary: #0D9488; /* Coastal Teal / Aqua Green */
   --color-secondary-rgb: 13, 148, 136;
-  --color-accent: #0EA5E9; /* Sky Blue */
-  --color-accent-rgb: 14, 165, 233;
+  --color-accent: #F97316; /* Sunlight Coral / Sunrise Orange */
+  --color-accent-rgb: 249, 115, 22;
 
   /* Background Hierarchy (Ocean Light Theme) */
-  --bg-base: #FFFFFF;
-  --bg-surface: #F8FAFC;
-  --bg-elevated: #F1F5F9;
-  --bg-card: #FFFFFF;
-  --bg-hover: #E0F2FE;
+  --bg-base: #F3F8FB; /* Sea Salt White (soft blue-white) */
+  --bg-surface: #EBF3F7; /* Ice Foam White */
+  --bg-elevated: #E2EDF3;
+  --bg-card: #FFFFFF; /* Cloud Foam White (cards stand out) */
+  --bg-hover: #E2F1F8;
 
   /* Text Hierarchy */
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --text-subtle: #94A3B8;
+  --text-primary: #0A2540; /* Deep Ocean Navy for high readability */
+  --text-secondary: #334155; /* Slate Gray */
+  --text-muted: #475569;
+  --text-subtle: #64748B;
 
   /* Semantic */
   --color-success: #10B981;
@@ -286,11 +286,11 @@ section {
 }
 
 /* Clean ocean navbar text overrides when scrolled */
-.navbar.scrolled .navbar__logo { color: #0C4A6E; }
-.navbar.scrolled .navbar__link { color: #475569; }
+.navbar.scrolled .navbar__logo { color: var(--color-primary); }
+.navbar.scrolled .navbar__link { color: var(--text-secondary); }
 .navbar.scrolled .navbar__link:hover,
-.navbar.scrolled .navbar__link.active { color: #0C4A6E; }
-.navbar.scrolled .navbar__link.active::after { background: #0D9488; }
+.navbar.scrolled .navbar__link.active { color: var(--color-primary); }
+.navbar.scrolled .navbar__link.active::after { background: var(--color-secondary); }
 
 .navbar__cta {
   margin-left: var(--sp-4);
