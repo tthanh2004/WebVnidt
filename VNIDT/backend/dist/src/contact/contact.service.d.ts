@@ -17,6 +17,7 @@ export declare class ContactService {
         name: string;
         phone: string | null;
         message: string;
+        deletedAt: Date | null;
         organization: string | null;
         sector: string;
     }[]>;
@@ -29,6 +30,7 @@ export declare class ContactService {
         name: string;
         phone: string | null;
         message: string;
+        deletedAt: Date | null;
         organization: string | null;
         sector: string;
     }>;

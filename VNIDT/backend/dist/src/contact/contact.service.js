@@ -163,12 +163,14 @@ let ContactService = ContactService_1 = class ContactService {
     }
     async findAll() {
         return this.prisma.contactRequest.findMany({
+            where: { deletedAt: null },
             orderBy: { createdAt: 'desc' },
         });
     }
     async delete(id) {
-        return this.prisma.contactRequest.delete({
+        return this.prisma.contactRequest.update({
             where: { id },
+            data: { deletedAt: new Date() },
         });
     }
     escapeHtml(str) {

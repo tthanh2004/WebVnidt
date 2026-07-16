@@ -1,14 +1,16 @@
-import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterAdminDto } from './dto/register-admin.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { SimpleRateLimiterGuard } from '../common/guards/rate-limiter.guard';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @UseGuards(SimpleRateLimiterGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @ApiOperation({ summary: 'Đăng nhập vào CMS' })
@@ -18,6 +20,7 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
+  @UseGuards(SimpleRateLimiterGuard)
   @Post('setup')
   @ApiOperation({ summary: 'Khởi tạo tài khoản Super Admin đầu tiên' })
   setupAdmin(@Body() registerDto: RegisterAdminDto) {

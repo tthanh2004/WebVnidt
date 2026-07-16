@@ -23,6 +23,7 @@ export declare class NewsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
         })[];
     }>;
     getSingleNews(slugOrId: string): Promise<{
@@ -49,6 +50,7 @@ export declare class NewsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
         };
         message?: undefined;
     }>;
@@ -66,6 +68,7 @@ export declare class NewsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
         };
         message: string;
     }>;
@@ -83,6 +86,7 @@ export declare class NewsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
         };
         message: string;
     }>;

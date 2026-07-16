@@ -18,6 +18,7 @@ const common_1 = require("@nestjs/common");
 const contact_service_1 = require("./contact.service");
 const create_contact_dto_1 = require("./dto/create-contact.dto");
 const auth_guard_1 = require("../auth/auth.guard");
+const rate_limiter_guard_1 = require("../common/guards/rate-limiter.guard");
 let ContactController = ContactController_1 = class ContactController {
     contactService;
     logger = new common_1.Logger(ContactController_1.name);
@@ -60,6 +61,7 @@ let ContactController = ContactController_1 = class ContactController {
 };
 exports.ContactController = ContactController;
 __decorate([
+    (0, common_1.UseGuards)(rate_limiter_guard_1.SimpleRateLimiterGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),

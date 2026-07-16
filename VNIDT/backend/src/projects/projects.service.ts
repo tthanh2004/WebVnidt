@@ -8,13 +8,14 @@ export class ProjectsService {
 
   async findAll() {
     return this.prisma.project.findMany({
+      where: { deletedAt: null },
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOne(id: string) {
-    return this.prisma.project.findUnique({
-      where: { id },
+    return this.prisma.project.findFirst({
+      where: { id, deletedAt: null },
     });
   }
 
@@ -32,8 +33,9 @@ export class ProjectsService {
   }
 
   async remove(id: string) {
-    return this.prisma.project.delete({
+    return this.prisma.project.update({
       where: { id },
+      data: { deletedAt: new Date() },
     });
   }
 }

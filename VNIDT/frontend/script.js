@@ -458,6 +458,16 @@
     }
   }
 
+  function escapeHTML(str) {
+    if (!str) return '';
+    return str.toString()
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   function renderProjects(projects) {
     const projectsGrid = document.getElementById('projects-grid');
     if (!projectsGrid) return;
@@ -471,11 +481,11 @@
       const img = p.imageUrl ? (window.getAssetUrl ? window.getAssetUrl(p.imageUrl) : p.imageUrl) : defaultImages[index % defaultImages.length];
       return `
         <a href="project-detail.html?id=${p.id}" class="project-card reveal visible" style="--i:${index}">
-          <img src="${img}" alt="${p.name}" loading="lazy">
+          <img src="${img}" alt="${escapeHTML(p.name)}" loading="lazy">
           <div class="project-card__overlay">
-            <span class="project-card__tag">${p.tag}</span>
-            <h3 class="project-card__title">${p.name}</h3>
-            <p class="project-card__desc">${p.description}</p>
+            <span class="project-card__tag">${escapeHTML(p.tag)}</span>
+            <h3 class="project-card__title">${escapeHTML(p.name)}</h3>
+            <p class="project-card__desc">${escapeHTML(p.description)}</p>
           </div>
         </a>
       `;
@@ -503,8 +513,8 @@
                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
                <span>${dateStr}</span>
             </div>
-            <h3 class="news-card__title">${n.name}</h3>
-            <p class="news-card__excerpt">${n.description}</p>
+            <h3 class="news-card__title">${escapeHTML(n.name)}</h3>
+            <p class="news-card__excerpt">${escapeHTML(n.description)}</p>
           </div>
         </a>
       `;

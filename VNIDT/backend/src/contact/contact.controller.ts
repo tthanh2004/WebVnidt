@@ -2,6 +2,7 @@ import { Controller, Post, Body, Res, HttpStatus, Logger, Get, Delete, Param, Us
 import { ContactService } from './contact.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { SimpleRateLimiterGuard } from '../common/guards/rate-limiter.guard';
 import type { Response } from 'express';
 
 @Controller('contact')
@@ -10,6 +11,7 @@ export class ContactController {
 
   constructor(private readonly contactService: ContactService) {}
 
+  @UseGuards(SimpleRateLimiterGuard)
   @Post()
   async sendContactEmail(@Body() body: CreateContactDto, @Res() res: Response) {
     try {

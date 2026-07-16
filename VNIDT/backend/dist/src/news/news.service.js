@@ -19,6 +19,7 @@ let NewsService = class NewsService {
     }
     async findAll() {
         return this.prisma.news.findMany({
+            where: { deletedAt: null },
             orderBy: { publishedAt: 'desc' },
             include: {
                 author: {
@@ -33,8 +34,8 @@ let NewsService = class NewsService {
     }
     async findOne(slugOrId) {
         const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slugOrId);
-        return this.prisma.news.findUnique({
-            where: isUuid ? { id: slugOrId } : { slug: slugOrId },
+        return this.prisma.news.findFirst({
+            where: isUuid ? { id: slugOrId, deletedAt: null } : { slug: slugOrId, deletedAt: null },
             include: {
                 author: {
                     select: {
@@ -85,8 +86,9 @@ let NewsService = class NewsService {
         });
     }
     async remove(id) {
-        return this.prisma.news.delete({
+        return this.prisma.news.update({
             where: { id },
+            data: { deletedAt: new Date() },
         });
     }
 };

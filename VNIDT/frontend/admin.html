@@ -518,6 +518,16 @@
   (async function () {
     'use strict';
 
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     var CMS = window.VNiDTCMS;
     var currentSection = 'projects';
     var hasUnsaved = false;
@@ -725,13 +735,20 @@
             var imgUrl = p.imageUrl || '';
             var resolvedImgUrl = window.getAssetUrl ? window.getAssetUrl(imgUrl) : imgUrl;
             var imgTag = imgUrl ? '<img src="' + resolvedImgUrl + '" style="width: 48px; height: 32px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);">' : '<span style="font-size:11px; color:var(--text-muted)">Không có</span>';
+            var escapedTag = escapeHTML(p.tag);
+            var escapedName = escapeHTML(p.name);
+            var escapedDesc = escapeHTML(p.description);
+            var escapedImgUrl = escapeHTML(imgUrl);
+            var escapedAttachUrl = escapeHTML(p.attachmentUrl || '');
+            var escapedAttachName = escapeHTML(p.attachmentName || '');
+            
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
                     '<td style="padding: 12px 16px;">' + imgTag + '</td>' +
-                    '<td style="padding: 12px 16px;"><span class="field__badge field__badge--text">' + p.tag + '</span></td>' +
-                    '<td style="padding: 12px 16px; font-weight:600">' + p.name + '</td>' +
-                    '<td style="padding: 12px 16px; color:var(--text-secondary)">' + p.description + '</td>' +
+                    '<td style="padding: 12px 16px;"><span class="field__badge field__badge--text">' + escapedTag + '</span></td>' +
+                    '<td style="padding: 12px 16px; font-weight:600">' + escapedName + '</td>' +
+                    '<td style="padding: 12px 16px; color:var(--text-secondary)">' + escapedDesc + '</td>' +
                     '<td style="padding: 12px 16px;">' +
-                    '<button class="btn btn--ghost btnEditProject" data-id="'+p.id+'" data-tag="'+p.tag+'" data-name="'+p.name+'" data-desc="'+p.description+'" data-image="'+imgUrl+'" data-attach-url="'+(p.attachmentUrl || '')+'" data-attach-name="'+(p.attachmentName || '')+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+                    '<button class="btn btn--ghost btnEditProject" data-id="'+p.id+'" data-tag="'+escapedTag+'" data-name="'+escapedName+'" data-desc="'+escapedDesc+'" data-image="'+escapedImgUrl+'" data-attach-url="'+escapedAttachUrl+'" data-attach-name="'+escapedAttachName+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
                     '<button class="btn btn--ghost btnDeleteProject" data-id="'+p.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
@@ -831,14 +848,23 @@
               : '<span class="field__badge" style="background:#F3F4F6; color:#374151; padding: 2px 6px; border-radius: 4px; font-size:11px">Nháp</span>';
             var authorEmail = n.author?.email || 'Hệ thống';
             
+            var escapedName = escapeHTML(n.name);
+            var escapedSlug = escapeHTML(n.slug);
+            var escapedDesc = escapeHTML(n.description);
+            var escapedAuthorEmail = escapeHTML(authorEmail);
+            var escapedDateStr = escapeHTML(dateStr);
+            var escapedLocalISO = escapeHTML(localISO);
+            var escapedAttachUrl = escapeHTML(n.attachmentUrl || '');
+            var escapedAttachName = escapeHTML(n.attachmentName || '');
+            
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
-                    '<td style="padding: 12px 16px; color:var(--text-muted)">' + dateStr + '</td>' +
-                    '<td style="padding: 12px 16px; font-weight:600">' + n.name + '</td>' +
-                    '<td style="padding: 12px 16px; font-family:monospace; font-size:12px; color:var(--text-secondary)">' + n.slug + '</td>' +
+                    '<td style="padding: 12px 16px; color:var(--text-muted)">' + escapedDateStr + '</td>' +
+                    '<td style="padding: 12px 16px; font-weight:600">' + escapedName + '</td>' +
+                    '<td style="padding: 12px 16px; font-family:monospace; font-size:12px; color:var(--text-secondary)">' + escapedSlug + '</td>' +
                     '<td style="padding: 12px 16px;">' + statusBadge + '</td>' +
-                    '<td style="padding: 12px 16px; color:var(--text-muted); font-size:13px">' + authorEmail + '</td>' +
+                    '<td style="padding: 12px 16px; color:var(--text-muted); font-size:13px">' + escapedAuthorEmail + '</td>' +
                     '<td style="padding: 12px 16px;">' +
-                    '<button class="btn btn--ghost btnEditNews" data-id="'+n.id+'" data-name="'+n.name+'" data-slug="'+n.slug+'" data-status="'+n.status+'" data-desc="'+n.description+'" data-date="'+localISO+'" data-attach-url="'+(n.attachmentUrl || '')+'" data-attach-name="'+(n.attachmentName || '')+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+                    '<button class="btn btn--ghost btnEditNews" data-id="'+n.id+'" data-name="'+escapedName+'" data-slug="'+escapedSlug+'" data-status="'+n.status+'" data-desc="'+escapedDesc+'" data-date="'+escapedLocalISO+'" data-attach-url="'+escapedAttachUrl+'" data-attach-name="'+escapedAttachName+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
                     '<button class="btn btn--ghost btnDeleteNews" data-id="'+n.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });

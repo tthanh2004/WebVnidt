@@ -17,6 +17,7 @@ export declare class ContactController {
             name: string;
             phone: string | null;
             message: string;
+            deletedAt: Date | null;
             organization: string | null;
             sector: string;
         }[];

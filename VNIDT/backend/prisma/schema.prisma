@@ -35,30 +35,36 @@ model Page {
 }
 
 model News {
-  id             String   @id @default(uuid())
-  name           String   // Tên tin tức
-  slug           String   @unique // Đường dẫn độc nhất
-  description    String   // Mô tả tin tức
-  status         String   @default("draft") // draft, published
-  publishedAt    DateTime @default(now()) // Thời gian đăng
-  attachmentUrl  String?  // Đường dẫn tài liệu đính kèm
-  attachmentName String?  // Tên tài liệu đính kèm
+  id             String    @id @default(uuid())
+  name           String    // Tên tin tức
+  slug           String    @unique // Đường dẫn độc nhất
+  description    String    // Mô tả tin tức
+  status         String    @default("draft") // draft, published
+  publishedAt    DateTime  @default(now()) // Thời gian đăng
+  attachmentUrl  String?   // Đường dẫn tài liệu đính kèm
+  attachmentName String?   // Tên tài liệu đính kèm
+  deletedAt      DateTime? // Thời điểm xóa mềm
   authorId       String
-  author         User     @relation(fields: [authorId], references: [id])
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  author         User      @relation(fields: [authorId], references: [id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([slug, status, deletedAt])
 }
 
 model Project {
-  id             String   @id @default(uuid())
-  tag            String   // Nhãn phân loại nhập tay
-  name           String   // Tên dự án
-  description    String   // Mô tả dự án
-  imageUrl       String?  // Đường dẫn ảnh dự án
-  attachmentUrl  String?  // Đường dẫn tài liệu đính kèm
-  attachmentName String?  // Tên tài liệu đính kèm
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id             String    @id @default(uuid())
+  tag            String    // Nhãn phân loại nhập tay
+  name           String    // Tên dự án
+  description    String    // Mô tả dự án
+  imageUrl       String?   // Đường dẫn ảnh dự án
+  attachmentUrl  String?   // Đường dẫn tài liệu đính kèm
+  attachmentName String?   // Tên tài liệu đính kèm
+  deletedAt      DateTime? // Thời điểm xóa mềm
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([tag, deletedAt])
 }
 
 model Media {
@@ -73,14 +79,17 @@ model Media {
 }
 
 model ContactRequest {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   name         String
   email        String
-  sector       String   // Lĩnh vực quan tâm (Bắt buộc)
-  message      String   // Nội dung yêu cầu (Bắt buộc)
-  phone        String?  // Số điện thoại (Tùy chọn)
-  organization String?  // Đơn vị tổ chức (Tùy chọn)
-  status       String   @default("new") // new, in_progress, closed
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  sector       String    // Lĩnh vực quan tâm (Bắt buộc)
+  message      String    // Nội dung yêu cầu (Bắt buộc)
+  phone        String?   // Số điện thoại (Tùy chọn)
+  organization String?   // Đơn vị tổ chức (Tùy chọn)
+  status       String    @default("new") // new, in_progress, closed
+  deletedAt    DateTime? // Thời điểm xóa mềm
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([status, deletedAt])
 }

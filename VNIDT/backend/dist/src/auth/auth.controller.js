@@ -18,6 +18,7 @@ const auth_service_1 = require("./auth.service");
 const login_dto_1 = require("./dto/login.dto");
 const register_admin_dto_1 = require("./dto/register-admin.dto");
 const swagger_1 = require("@nestjs/swagger");
+const rate_limiter_guard_1 = require("../common/guards/rate-limiter.guard");
 let AuthController = class AuthController {
     authService;
     constructor(authService) {
@@ -32,6 +33,7 @@ let AuthController = class AuthController {
 };
 exports.AuthController = AuthController;
 __decorate([
+    (0, common_1.UseGuards)(rate_limiter_guard_1.SimpleRateLimiterGuard),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     (0, common_1.Post)('login'),
     (0, swagger_1.ApiOperation)({ summary: 'Đăng nhập vào CMS' }),
@@ -43,6 +45,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
 __decorate([
+    (0, common_1.UseGuards)(rate_limiter_guard_1.SimpleRateLimiterGuard),
     (0, common_1.Post)('setup'),
     (0, swagger_1.ApiOperation)({ summary: 'Khởi tạo tài khoản Super Admin đầu tiên' }),
     __param(0, (0, common_1.Body)()),

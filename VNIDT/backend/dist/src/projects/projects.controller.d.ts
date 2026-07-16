@@ -13,6 +13,7 @@ export declare class ProjectsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
             tag: string;
             imageUrl: string | null;
         }[];
@@ -31,6 +32,7 @@ export declare class ProjectsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
             tag: string;
             imageUrl: string | null;
         };
@@ -46,6 +48,7 @@ export declare class ProjectsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
             tag: string;
             imageUrl: string | null;
         };
@@ -61,6 +64,7 @@ export declare class ProjectsController {
             description: string;
             attachmentUrl: string | null;
             attachmentName: string | null;
+            deletedAt: Date | null;
             tag: string;
             imageUrl: string | null;
         };
