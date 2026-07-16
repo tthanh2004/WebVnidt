@@ -72,4 +72,66 @@ export class UploadController {
     const imageUrl = `assets/uploads/${file.filename}`;
     return { success: true, imageUrl, message: 'Tải ảnh lên thành công.' };
   }
+
+  @UseGuards(AuthGuard)
+  @Post('file')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: {
+      destination: (req: any, file: any, cb: any) => {
+        cb(null, getUploadDir());
+      },
+      filename: (req: any, file: any, cb: any) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e6);
+        const ext = extname(file.originalname).toLowerCase();
+        cb(null, `attachment-${uniqueSuffix}${ext}`);
+      },
+      _handleFile: function(req: any, file: any, cb: any) {
+        (this as any).destination(req, file, (err: any, destination: string) => {
+          if (err) return cb(err);
+          (this as any).filename(req, file, (err2: any, filename: string) => {
+            if (err2) return cb(err2);
+            const finalPath = join(destination, filename);
+            const outStream = require('fs').createWriteStream(finalPath);
+            file.stream.pipe(outStream);
+            outStream.on('error', cb);
+            outStream.on('finish', () => {
+              cb(null, { destination, filename, path: finalPath, size: outStream.bytesWritten });
+            });
+          });
+        });
+      },
+      _removeFile: function(_req: any, file: any, cb: any) {
+        require('fs').unlink(file.path, cb);
+      }
+    } as any,
+    fileFilter: (req: any, file: any, cb: any) => {
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'text/plain',
+        'application/zip',
+        'application/x-zip-compressed',
+        'application/x-rar-compressed'
+      ];
+      const ext = extname(file.originalname).toLowerCase();
+      const allowedExts = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.txt', '.zip', '.rar'];
+      if (!allowedTypes.includes(file.mimetype) && !allowedExts.includes(ext)) {
+        return cb(new BadRequestException('Định dạng tệp không được hỗ trợ (chỉ nhận PDF, Word, Excel, PowerPoint, TXT, ZIP, RAR)'), false);
+      }
+      cb(null, true);
+    },
+    limits: { fileSize: 20 * 1024 * 1024 } // 20MB
+  }))
+  uploadFile(@UploadedFile() file: any) {
+    if (!file) {
+      throw new BadRequestException('Không tìm thấy tệp đính kèm.');
+    }
+    const fileUrl = `assets/uploads/${file.filename}`;
+    return { success: true, fileUrl, originalName: file.originalname, message: 'Tải tệp lên thành công.' };
+  }
 }

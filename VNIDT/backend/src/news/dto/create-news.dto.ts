@@ -20,4 +20,12 @@ export class CreateNewsDto {
   @IsDateString({}, { message: 'Thời gian đăng không hợp lệ' })
   @IsOptional()
   publishedAt?: string;
+
+  @IsString()
+  @IsOptional()
+  attachmentUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  attachmentName?: string;
 }

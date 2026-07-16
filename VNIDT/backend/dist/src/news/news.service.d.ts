@@ -19,6 +19,8 @@ export declare class NewsService {
         authorId: string;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
     })[]>;
     findOne(slugOrId: string): Promise<({
         author: {
@@ -36,6 +38,8 @@ export declare class NewsService {
         authorId: string;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
     }) | null>;
     create(data: CreateNewsDto, authorId: string): Promise<{
         id: string;
@@ -47,6 +51,8 @@ export declare class NewsService {
         authorId: string;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
     }>;
     update(id: string, data: CreateNewsDto): Promise<{
         id: string;
@@ -58,6 +64,8 @@ export declare class NewsService {
         authorId: string;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
     }>;
     remove(id: string): Promise<{
         id: string;
@@ -69,5 +77,7 @@ export declare class NewsService {
         authorId: string;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
     }>;
 }

@@ -46,6 +46,8 @@ export class NewsService {
         description: data.description,
         status: data.status || 'draft',
         publishedAt: publishedAtDate,
+        attachmentUrl: data.attachmentUrl,
+        attachmentName: data.attachmentName,
         authorId,
       },
     });
@@ -62,6 +64,12 @@ export class NewsService {
     }
     if (data.publishedAt) {
       updateData.publishedAt = new Date(data.publishedAt);
+    }
+    if (data.attachmentUrl !== undefined) {
+      updateData.attachmentUrl = data.attachmentUrl;
+    }
+    if (data.attachmentName !== undefined) {
+      updateData.attachmentName = data.attachmentName;
     }
     return this.prisma.news.update({
       where: { id },

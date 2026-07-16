@@ -16,6 +16,8 @@ class CreateProjectDto {
     name;
     description;
     imageUrl;
+    attachmentUrl;
+    attachmentName;
 }
 exports.CreateProjectDto = CreateProjectDto;
 __decorate([
@@ -38,4 +40,14 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateProjectDto.prototype, "imageUrl", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProjectDto.prototype, "attachmentUrl", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProjectDto.prototype, "attachmentName", void 0);
 //# sourceMappingURL=create-project.dto.js.map

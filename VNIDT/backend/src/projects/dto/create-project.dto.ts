@@ -16,4 +16,12 @@ export class CreateProjectDto {
   @IsString()
   @IsOptional()
   imageUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  attachmentUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  attachmentName?: string;
 }

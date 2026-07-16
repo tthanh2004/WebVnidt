@@ -123,6 +123,19 @@
       <div class="detail-content" id="proj-desc">
         <!-- Project description will render here -->
       </div>
+      <!-- Attachment Section -->
+      <div id="attachment-wrap" style="display:none; margin-top: 40px; padding: 20px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent); flex-shrink: 0;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div style="min-width: 0;">
+            <div style="font-weight: 600; color: var(--text-primary); font-size: 15px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 100%;" id="attachment-name">Tai_lieu_dinh_kem.pdf</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Tài liệu đính kèm chính thức</div>
+          </div>
+        </div>
+        <a href="" id="attachment-link" download class="btn btn--primary" style="padding: 8px 16px; font-size: 13px; text-decoration: none;">
+          Tải về
+        </a>
+      </div>
     </div>
   </article>
 
@@ -163,6 +176,13 @@
             img.src = window.getAssetUrl ? window.getAssetUrl(project.imageUrl) : project.imageUrl;
             img.alt = project.name;
             imgWrap.style.display = 'block';
+          }
+          
+          if (project.attachmentUrl) {
+            document.getElementById('attachment-name').textContent = project.attachmentName || project.attachmentUrl.split('/').pop();
+            const link = document.getElementById('attachment-link');
+            link.href = window.getAssetUrl ? window.getAssetUrl(project.attachmentUrl) : project.attachmentUrl;
+            document.getElementById('attachment-wrap').style.display = 'flex';
           }
           document.title = project.name + ' — VNiDT';
         } else {

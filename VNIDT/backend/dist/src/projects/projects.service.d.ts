@@ -9,6 +9,8 @@ export declare class ProjectsService {
         updatedAt: Date;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
         tag: string;
         imageUrl: string | null;
     }[]>;
@@ -18,6 +20,8 @@ export declare class ProjectsService {
         updatedAt: Date;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
         tag: string;
         imageUrl: string | null;
     } | null>;
@@ -27,6 +31,8 @@ export declare class ProjectsService {
         updatedAt: Date;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
         tag: string;
         imageUrl: string | null;
     }>;
@@ -36,6 +42,8 @@ export declare class ProjectsService {
         updatedAt: Date;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
         tag: string;
         imageUrl: string | null;
     }>;
@@ -45,6 +53,8 @@ export declare class ProjectsService {
         updatedAt: Date;
         name: string;
         description: string;
+        attachmentUrl: string | null;
+        attachmentName: string | null;
         tag: string;
         imageUrl: string | null;
     }>;

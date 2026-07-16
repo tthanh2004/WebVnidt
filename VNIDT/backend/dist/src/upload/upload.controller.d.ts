@@ -4,4 +4,10 @@ export declare class UploadController {
         imageUrl: string;
         message: string;
     };
+    uploadFile(file: any): {
+        success: boolean;
+        fileUrl: string;
+        originalName: any;
+        message: string;
+    };
 }

@@ -4,4 +4,6 @@ export declare class CreateNewsDto {
     description: string;
     status?: string;
     publishedAt?: string;
+    attachmentUrl?: string;
+    attachmentName?: string;
 }

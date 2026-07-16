@@ -11,6 +11,8 @@ export declare class ProjectsController {
             updatedAt: Date;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
             tag: string;
             imageUrl: string | null;
         }[];
@@ -27,6 +29,8 @@ export declare class ProjectsController {
             updatedAt: Date;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
             tag: string;
             imageUrl: string | null;
         };
@@ -40,6 +44,8 @@ export declare class ProjectsController {
             updatedAt: Date;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
             tag: string;
             imageUrl: string | null;
         };
@@ -53,6 +59,8 @@ export declare class ProjectsController {
             updatedAt: Date;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
             tag: string;
             imageUrl: string | null;
         };

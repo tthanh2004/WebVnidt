@@ -17,6 +17,8 @@ class CreateNewsDto {
     description;
     status;
     publishedAt;
+    attachmentUrl;
+    attachmentName;
 }
 exports.CreateNewsDto = CreateNewsDto;
 __decorate([
@@ -44,4 +46,14 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateNewsDto.prototype, "publishedAt", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateNewsDto.prototype, "attachmentUrl", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateNewsDto.prototype, "attachmentName", void 0);
 //# sourceMappingURL=create-news.dto.js.map

@@ -3,4 +3,6 @@ export declare class CreateProjectDto {
     name: string;
     description: string;
     imageUrl?: string;
+    attachmentUrl?: string;
+    attachmentName?: string;
 }

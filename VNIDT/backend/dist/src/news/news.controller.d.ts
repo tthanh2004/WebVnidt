@@ -21,6 +21,8 @@ export declare class NewsController {
             authorId: string;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
         })[];
     }>;
     getSingleNews(slugOrId: string): Promise<{
@@ -45,6 +47,8 @@ export declare class NewsController {
             authorId: string;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
         };
         message?: undefined;
     }>;
@@ -60,6 +64,8 @@ export declare class NewsController {
             authorId: string;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
         };
         message: string;
     }>;
@@ -75,6 +81,8 @@ export declare class NewsController {
             authorId: string;
             name: string;
             description: string;
+            attachmentUrl: string | null;
+            attachmentName: string | null;
         };
         message: string;
     }>;
