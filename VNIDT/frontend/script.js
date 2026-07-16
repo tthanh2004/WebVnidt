@@ -268,6 +268,33 @@
 
   // ── 7. Contact Form Handling ──
   if (contactForm) {
+    // Helper to show field error
+    function showError(field, message) {
+      field.classList.add('invalid');
+      field.setAttribute('aria-invalid', 'true');
+      
+      let errorEl = field.parentNode.querySelector('.form__error-msg');
+      if (!errorEl) {
+        errorEl = document.createElement('span');
+        errorEl.className = 'form__error-msg';
+        errorEl.id = field.id + '-error';
+        field.parentNode.appendChild(errorEl);
+      }
+      errorEl.textContent = message;
+      field.setAttribute('aria-describedby', errorEl.id);
+    }
+
+    // Helper to clear field error
+    function clearError(field) {
+      field.classList.remove('invalid');
+      field.removeAttribute('aria-invalid');
+      field.removeAttribute('aria-describedby');
+      const errorEl = field.parentNode.querySelector('.form__error-msg');
+      if (errorEl) {
+        errorEl.remove();
+      }
+    }
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -275,26 +302,45 @@
       const nameField = document.getElementById('contact-name');
       const emailField = document.getElementById('contact-email');
       const messageField = document.getElementById('contact-message');
-
       const interestField = document.getElementById('contact-interest');
 
-      // Simple validation
       let valid = true;
-      [nameField, emailField, messageField, interestField].forEach(field => {
-        if (!field || !field.value.trim()) {
-          if (field) field.style.borderColor = 'var(--color-error)';
+      let firstInvalidField = null;
+
+      // Validate required fields
+      const requiredFields = [
+        { field: nameField, name: 'Họ và Tên' },
+        { field: emailField, name: 'Email' },
+        { field: messageField, name: 'Nội dung yêu cầu' },
+        { field: interestField, name: 'Lĩnh vực quan tâm' }
+      ];
+
+      requiredFields.forEach(item => {
+        if (!item.field || !item.field.value.trim()) {
+          showError(item.field, `Vui lòng nhập/chọn ${item.name}`);
           valid = false;
+          if (!firstInvalidField) firstInvalidField = item.field;
         } else {
-          if (field) field.style.borderColor = '';
+          clearError(item.field);
         }
       });
 
-      if (emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
-        emailField.style.borderColor = 'var(--color-error)';
-        valid = false;
+      // Email format validation
+      if (emailField && emailField.value.trim()) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailField.value.trim())) {
+          showError(emailField, 'Email không đúng định dạng (ví dụ: ten@donvi.com)');
+          valid = false;
+          if (!firstInvalidField) firstInvalidField = emailField;
+        }
       }
 
-      if (!valid) return;
+      if (!valid) {
+        if (firstInvalidField) {
+          firstInvalidField.focus();
+        }
+        return;
+      }
 
       const phoneField = document.getElementById('contact-phone');
       const orgField = document.getElementById('contact-org');
@@ -358,10 +404,11 @@
       });
     });
 
-    // Clear error on input
-    contactForm.querySelectorAll('.form__input, .form__textarea').forEach(field => {
-      field.addEventListener('input', () => {
-        field.style.borderColor = '';
+    // Clear error on input/change
+    contactForm.querySelectorAll('.form__input, .form__textarea, .form__select').forEach(field => {
+      const eventType = field.tagName === 'SELECT' ? 'change' : 'input';
+      field.addEventListener(eventType, () => {
+        clearError(field);
       });
     });
   }

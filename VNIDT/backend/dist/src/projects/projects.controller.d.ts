@@ -15,6 +15,23 @@ export declare class ProjectsController {
             imageUrl: string | null;
         }[];
     }>;
+    getProject(id: string): Promise<{
+        success: boolean;
+        message: string;
+        data?: undefined;
+    } | {
+        success: boolean;
+        data: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            description: string;
+            tag: string;
+            imageUrl: string | null;
+        };
+        message?: undefined;
+    }>;
     createProject(body: CreateProjectDto): Promise<{
         success: boolean;
         data: {

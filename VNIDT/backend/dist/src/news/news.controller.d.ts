@@ -23,6 +23,31 @@ export declare class NewsController {
             description: string;
         })[];
     }>;
+    getSingleNews(slugOrId: string): Promise<{
+        success: boolean;
+        message: string;
+        data?: undefined;
+    } | {
+        success: boolean;
+        data: {
+            author: {
+                id: string;
+                email: string;
+                role: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            slug: string;
+            status: string;
+            publishedAt: Date;
+            authorId: string;
+            name: string;
+            description: string;
+        };
+        message?: undefined;
+    }>;
     createNews(body: CreateNewsDto, req: any): Promise<{
         success: boolean;
         data: {

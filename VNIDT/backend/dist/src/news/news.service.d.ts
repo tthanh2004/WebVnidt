@@ -20,7 +20,7 @@ export declare class NewsService {
         name: string;
         description: string;
     })[]>;
-    findOne(id: string): Promise<({
+    findOne(slugOrId: string): Promise<({
         author: {
             id: string;
             email: string;

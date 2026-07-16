@@ -11,20 +11,20 @@
 
   /* ── Section Definitions ── */
   var SECTIONS = [
-    { id: 'hero',         label: 'Hero Section',      icon: 'H'  },
-    { id: 'intro',        label: 'Giới Thiệu',        icon: 'GT' },
-    { id: 'values',       label: 'Giá Trị Cốt Lõi',   icon: 'GI' },
-    { id: 'stats',        label: 'Thống Kê',          icon: 'TK' },
-    { id: 'about',        label: 'Về Chúng Tôi',      icon: 'VE' },
-    { id: 'solutions',    label: 'Giải Pháp',         icon: 'GP' },
-    { id: 'dashboard',    label: 'GIS Dashboard',     icon: 'DB' },
-    { id: 'projects_static', label: 'Dự Án (Tiêu đề)', icon: 'DA' },
-    { id: 'testimonials',    label: 'Khách Hàng',        icon: 'KH' },
-    { id: 'news_static',     label: 'Tin Tức (Tiêu đề)', icon: 'TT' },
-    { id: 'cta',          label: 'CTA Banner',        icon: 'CT' },
-    { id: 'contact',      label: 'Liên Hệ',           icon: 'LH' },
-    { id: 'footer',       label: 'Footer',            icon: 'FT' },
-    { id: 'typography',   label: 'Cỡ Chữ',            icon: 'Aa' },
+    { id: 'hero',         label: 'Hero Section',      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg>' },
+    { id: 'intro',        label: 'Giới Thiệu',        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' },
+    { id: 'values',       label: 'Giá Trị Cốt Lõi',   icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+    { id: 'stats',        label: 'Thống Kê',          icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>' },
+    { id: 'about',        label: 'Về Chúng Tôi',      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+    { id: 'solutions',    label: 'Giải Pháp',         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/></svg>' },
+    { id: 'dashboard',    label: 'GIS Dashboard',     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>' },
+    { id: 'projects_static', label: 'Dự Án (Tiêu đề)', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>' },
+    { id: 'testimonials',    label: 'Khách Hàng',        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+    { id: 'news_static',     label: 'Tin Tức (Tiêu đề)', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' },
+    { id: 'cta',          label: 'CTA Banner',        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>' },
+    { id: 'contact',      label: 'Liên Hệ',           icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' },
+    { id: 'footer',       label: 'Footer',            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="15" width="18" height="6" rx="2" ry="2"/><rect x="3" y="3" width="18" height="6" rx="2" ry="2"/></svg>' },
+    { id: 'typography',   label: 'Cỡ Chữ',            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>' },
   ];
 
   /* ── Field Schema ──

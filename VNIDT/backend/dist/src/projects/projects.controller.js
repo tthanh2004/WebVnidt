@@ -26,6 +26,13 @@ let ProjectsController = class ProjectsController {
         const list = await this.projectsService.findAll();
         return { success: true, data: list };
     }
+    async getProject(id) {
+        const project = await this.projectsService.findOne(id);
+        if (!project) {
+            return { success: false, message: 'Không tìm thấy dự án.' };
+        }
+        return { success: true, data: project };
+    }
     async createProject(body) {
         const project = await this.projectsService.create(body);
         return { success: true, data: project, message: 'Đã thêm dự án thành công.' };
@@ -46,6 +53,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "getProjects", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProjectsController.prototype, "getProject", null);
 __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Post)(),

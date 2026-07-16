@@ -26,6 +26,13 @@ let NewsController = class NewsController {
         const list = await this.newsService.findAll();
         return { success: true, data: list };
     }
+    async getSingleNews(slugOrId) {
+        const news = await this.newsService.findOne(slugOrId);
+        if (!news) {
+            return { success: false, message: 'Không tìm thấy tin tức.' };
+        }
+        return { success: true, data: news };
+    }
     async createNews(body, req) {
         const authorId = req.user?.sub;
         if (!authorId) {
@@ -50,6 +57,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "getNews", null);
+__decorate([
+    (0, common_1.Get)(':slugOrId'),
+    __param(0, (0, common_1.Param)('slugOrId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], NewsController.prototype, "getSingleNews", null);
 __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Post)(),

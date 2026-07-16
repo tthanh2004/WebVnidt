@@ -9,23 +9,25 @@
 
 /* ---------- 1. Custom Properties (Design Tokens) ---------- */
 :root {
-  /* Primary Palette (Sea/Island Ocean Colors) */
-  --color-primary: #0A2540; /* Deep Ocean Navy */
-  --color-primary-rgb: 10, 37, 64;
-  --color-secondary: #0D9488; /* Coastal Teal / Aqua Green */
-  --color-secondary-rgb: 13, 148, 136;
-  --color-accent: #F97316; /* Sunlight Coral / Sunrise Orange */
-  --color-accent-rgb: 249, 115, 22;
+  /* Primary Palette (VNiDT Brand Colors) */
+  --color-primary: #0C1E36; /* Deep B2B Corporate Navy */
+  --color-primary-rgb: 12, 30, 54;
+  --color-secondary: #59BFC4; /* Brand Teal */
+  --color-secondary-rgb: 89, 191, 196;
+  --color-accent: #4390C8; /* Brand Bright GIS Blue */
+  --color-accent-rgb: 67, 144, 200;
+  --brand-purple: #670E7A;
+  --brand-pink: #9E3589;
 
   /* Background Hierarchy (Ocean Light Theme) */
-  --bg-base: #F3F8FB; /* Sea Salt White (soft blue-white) */
-  --bg-surface: #EBF3F7; /* Ice Foam White */
-  --bg-elevated: #E2EDF3;
-  --bg-card: #FFFFFF; /* Cloud Foam White (cards stand out) */
-  --bg-hover: #E2F1F8;
+  --bg-base: #FFFFFF; /* Pure White background */
+  --bg-surface: #F8FAFC; /* Soft Light Slate */
+  --bg-elevated: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --bg-hover: #E2E8F0;
 
   /* Text Hierarchy */
-  --text-primary: #0A2540; /* Deep Ocean Navy for high readability */
+  --text-primary: #0C1E36; /* Deep Corporate Navy */
   --text-secondary: #334155; /* Slate Gray */
   --text-muted: #475569;
   --text-subtle: #64748B;
@@ -160,7 +162,7 @@ h1,h2,h3,h4,h5,h6 {
 .highlight { color: var(--text-primary); }
 .accent-text { color: var(--color-accent); }
 .gradient-text {
-  background: linear-gradient(135deg, #0F52BA 0%, #0D9488 50%, #0EA5E9 100%);
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--color-accent) 50%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1202,6 +1204,27 @@ a.project-card, a.news-card {
   text-align: center;
   font-size: var(--fs-xs);
   color: var(--text-muted);
+}
+
+.form__input.invalid,
+.form__textarea.invalid,
+.form__select.invalid {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .15) !important;
+}
+
+.form__error-msg {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--color-error);
+  margin-top: var(--sp-1);
+  font-weight: var(--fw-medium);
+  animation: formErrorFadeIn 0.2s ease-out;
+}
+
+@keyframes formErrorFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Contact Info Cards */
