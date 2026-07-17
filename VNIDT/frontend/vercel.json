@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/admin.login", "destination": "/login.html" },
+    { "source": "/crudadmin", "destination": "/admin.html" }
+  ],
+  "redirects": [
+    { "source": "/login.html", "destination": "/admin.login", "permanent": false },
+    { "source": "/admin.html", "destination": "/crudadmin", "permanent": false }
+  ]
+}
