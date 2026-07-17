@@ -71,7 +71,7 @@ export declare class NewsService {
         attachmentName: string | null;
         deletedAt: Date | null;
     }>;
-    remove(id: string): Promise<{
+    remove(id: string, currentUser: any): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;

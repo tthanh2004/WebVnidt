@@ -90,7 +90,7 @@ export declare class NewsController {
         };
         message: string;
     }>;
-    deleteNews(id: string): Promise<{
+    deleteNews(id: string, req: any): Promise<{
         success: boolean;
         message: string;
     }>;

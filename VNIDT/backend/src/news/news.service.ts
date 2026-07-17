@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 
@@ -78,7 +78,23 @@ export class NewsService {
     });
   }
 
-  async remove(id: string) {
+  async remove(id: string, currentUser: any) {
+    const news = await this.prisma.news.findUnique({
+      where: { id },
+    });
+    if (!news) {
+      throw new NotFoundException('Không tìm thấy tin tức.');
+    }
+
+    // Phân quyền: chỉ admin, super_admin hoặc chính người tạo mới được xóa
+    if (
+      currentUser.role !== 'super_admin' &&
+      currentUser.role !== 'admin' &&
+      news.authorId !== currentUser.sub
+    ) {
+      throw new ForbiddenException('Bạn không có quyền xóa tin tức của người khác.');
+    }
+
     return this.prisma.news.update({
       where: { id },
       data: { deletedAt: new Date() },

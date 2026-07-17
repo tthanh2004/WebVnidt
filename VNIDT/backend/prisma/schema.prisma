@@ -8,21 +8,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
+  id            String    @id @default(uuid())
+  email         String    @unique
   passwordHash  String
-  role          String   @default("editor") // super_admin, admin, editor, dept_manager, viewer
-  mfaEnabled    Boolean  @default(false)
+  role          String    @default("editor") // super_admin, admin, editor, dept_manager, viewer
+  mfaEnabled    Boolean   @default(false)
   lastLogin     DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   news          News[]
   media         Media[]
+  projects      Project[]
 }
 
 model Page {
@@ -61,6 +62,8 @@ model Project {
   attachmentUrl  String?   // Đường dẫn tài liệu đính kèm
   attachmentName String?   // Tên tài liệu đính kèm
   deletedAt      DateTime? // Thời điểm xóa mềm
+  authorId       String    // Tác giả tạo dự án
+  author         User      @relation(fields: [authorId], references: [id])
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 

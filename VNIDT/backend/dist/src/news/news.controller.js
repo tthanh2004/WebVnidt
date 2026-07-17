@@ -45,8 +45,8 @@ let NewsController = class NewsController {
         const news = await this.newsService.update(id, body);
         return { success: true, data: news, message: 'Đã cập nhật tin tức thành công.' };
     }
-    async deleteNews(id) {
-        await this.newsService.remove(id);
+    async deleteNews(id, req) {
+        await this.newsService.remove(id, req.user);
         return { success: true, message: 'Đã xóa tin tức thành công.' };
     }
 };
@@ -86,8 +86,9 @@ __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "deleteNews", null);
 exports.NewsController = NewsController = __decorate([

@@ -31,24 +31,28 @@ async function main() {
         name: 'CSDL Tài Nguyên Môi Trường',
         description: 'Số hóa và xây dựng cơ sở dữ liệu tài nguyên môi trường theo chuẩn quốc gia, phục vụ quản lý đa ngành trên nền tảng WebGIS.',
         imageUrl: 'assets/xay-dung-co-so-du-lieu-tnmt.jpg',
+        authorId: adminUser.id,
       },
       {
         tag: 'Thủy sản · Quảng Ninh',
         name: 'Quản Lý Thủy Sản Vịnh Bắc Bộ',
         description: 'Triển khai hệ thống giám sát 1,245 cơ sở giống, 4,820 ha mặt biển nuôi cấp phép với 158 vùng nuôi chuẩn VietGAP.',
         imageUrl: 'assets/he-thong-quan-ly-thong-minh.jpg',
+        authorId: adminUser.id,
       },
       {
         tag: 'Môi trường · Web/App',
         name: 'Giám Sát Nguồn Thải Quốc Gia',
         description: 'Xây dựng nền tảng web/app quản lý nguồn thải với hệ thống cảnh báo ô nhiễm vượt giới hạn và báo cáo tự động.',
         imageUrl: 'assets/quan-ly-nguon-thai-web-app.jpg',
+        authorId: adminUser.id,
       },
       {
         tag: 'AI · Biển Đông',
         name: 'Cảnh Báo Thiên Tai Biển Đông',
         description: 'Ứng dụng AI dự báo bão, theo dõi thời tiết thời gian thực và hỗ trợ thông tin ngư trường cho ngư dân trên Biển Đông.',
         imageUrl: 'assets/canh-bao-thien-tai-ngu-truong.jpg',
+        authorId: adminUser.id,
       },
     ],
   });

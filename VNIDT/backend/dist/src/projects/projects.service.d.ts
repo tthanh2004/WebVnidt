@@ -7,6 +7,7 @@ export declare class ProjectsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        authorId: string;
         name: string;
         description: string;
         attachmentUrl: string | null;
@@ -19,6 +20,7 @@ export declare class ProjectsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        authorId: string;
         name: string;
         description: string;
         attachmentUrl: string | null;
@@ -27,10 +29,11 @@ export declare class ProjectsService {
         tag: string;
         imageUrl: string | null;
     } | null>;
-    create(data: CreateProjectDto): Promise<{
+    create(data: CreateProjectDto, authorId: string): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        authorId: string;
         name: string;
         description: string;
         attachmentUrl: string | null;
@@ -43,6 +46,7 @@ export declare class ProjectsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        authorId: string;
         name: string;
         description: string;
         attachmentUrl: string | null;
@@ -51,10 +55,11 @@ export declare class ProjectsService {
         tag: string;
         imageUrl: string | null;
     }>;
-    remove(id: string): Promise<{
+    remove(id: string, currentUser: any): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        authorId: string;
         name: string;
         description: string;
         attachmentUrl: string | null;

@@ -42,8 +42,8 @@ export class NewsController {
 
   @UseGuards(AuthGuard)
   @Delete(':id')
-  async deleteNews(@Param('id') id: string) {
-    await this.newsService.remove(id);
+  async deleteNews(@Param('id') id: string, @Req() req: any) {
+    await this.newsService.remove(id, req.user);
     return { success: true, message: 'Đã xóa tin tức thành công.' };
   }
 }

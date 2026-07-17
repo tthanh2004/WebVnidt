@@ -9,6 +9,7 @@ export declare class ProjectsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            authorId: string;
             name: string;
             description: string;
             attachmentUrl: string | null;
@@ -28,6 +29,7 @@ export declare class ProjectsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            authorId: string;
             name: string;
             description: string;
             attachmentUrl: string | null;
@@ -38,12 +40,13 @@ export declare class ProjectsController {
         };
         message?: undefined;
     }>;
-    createProject(body: CreateProjectDto): Promise<{
+    createProject(body: CreateProjectDto, req: any): Promise<{
         success: boolean;
         data: {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            authorId: string;
             name: string;
             description: string;
             attachmentUrl: string | null;
@@ -60,6 +63,7 @@ export declare class ProjectsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            authorId: string;
             name: string;
             description: string;
             attachmentUrl: string | null;
@@ -70,7 +74,7 @@ export declare class ProjectsController {
         };
         message: string;
     }>;
-    deleteProject(id: string): Promise<{
+    deleteProject(id: string, req: any): Promise<{
         success: boolean;
         message: string;
     }>;

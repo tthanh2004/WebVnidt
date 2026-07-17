@@ -85,7 +85,18 @@ let NewsService = class NewsService {
             data: updateData,
         });
     }
-    async remove(id) {
+    async remove(id, currentUser) {
+        const news = await this.prisma.news.findUnique({
+            where: { id },
+        });
+        if (!news) {
+            throw new common_1.NotFoundException('Không tìm thấy tin tức.');
+        }
+        if (currentUser.role !== 'super_admin' &&
+            currentUser.role !== 'admin' &&
+            news.authorId !== currentUser.sub) {
+            throw new common_1.ForbiddenException('Bạn không có quyền xóa tin tức của người khác.');
+        }
         return this.prisma.news.update({
             where: { id },
             data: { deletedAt: new Date() },

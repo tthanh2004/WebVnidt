@@ -33,16 +33,20 @@ let ProjectsController = class ProjectsController {
         }
         return { success: true, data: project };
     }
-    async createProject(body) {
-        const project = await this.projectsService.create(body);
+    async createProject(body, req) {
+        const authorId = req.user?.sub;
+        if (!authorId) {
+            throw new Error('Không tìm thấy thông tin đăng nhập tác giả.');
+        }
+        const project = await this.projectsService.create(body, authorId);
         return { success: true, data: project, message: 'Đã thêm dự án thành công.' };
     }
     async updateProject(id, body) {
         const project = await this.projectsService.update(id, body);
         return { success: true, data: project, message: 'Đã cập nhật dự án thành công.' };
     }
-    async deleteProject(id) {
-        await this.projectsService.remove(id);
+    async deleteProject(id, req) {
+        await this.projectsService.remove(id, req.user);
         return { success: true, message: 'Đã xóa dự án thành công.' };
     }
 };
@@ -64,8 +68,9 @@ __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_project_dto_1.CreateProjectDto]),
+    __metadata("design:paramtypes", [create_project_dto_1.CreateProjectDto, Object]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "createProject", null);
 __decorate([
@@ -81,8 +86,9 @@ __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], ProjectsController.prototype, "deleteProject", null);
 exports.ProjectsController = ProjectsController = __decorate([

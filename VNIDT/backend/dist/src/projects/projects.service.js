@@ -28,9 +28,17 @@ let ProjectsService = class ProjectsService {
             where: { id, deletedAt: null },
         });
     }
-    async create(data) {
+    async create(data, authorId) {
         return this.prisma.project.create({
-            data,
+            data: {
+                tag: data.tag,
+                name: data.name,
+                description: data.description,
+                imageUrl: data.imageUrl,
+                attachmentUrl: data.attachmentUrl,
+                attachmentName: data.attachmentName,
+                authorId,
+            },
         });
     }
     async update(id, data) {
@@ -39,7 +47,18 @@ let ProjectsService = class ProjectsService {
             data,
         });
     }
-    async remove(id) {
+    async remove(id, currentUser) {
+        const project = await this.prisma.project.findUnique({
+            where: { id },
+        });
+        if (!project) {
+            throw new common_1.NotFoundException('Không tìm thấy dự án.');
+        }
+        if (currentUser.role !== 'super_admin' &&
+            currentUser.role !== 'admin' &&
+            project.authorId !== currentUser.sub) {
+            throw new common_1.ForbiddenException('Bạn không có quyền xóa dự án của người khác.');
+        }
         return this.prisma.project.update({
             where: { id },
             data: { deletedAt: new Date() },
