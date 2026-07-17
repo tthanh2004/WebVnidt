@@ -5,24 +5,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from '../auth/auth.guard';
 import { join, extname } from 'path';
-import { existsSync, mkdirSync } from 'fs';
-
-// Determine the uploads destination (frontend/assets/uploads/)
-function getUploadDir(): string {
-  const devPath = join(__dirname, '..', '..', '..', 'frontend', 'assets', 'uploads');
-  if (existsSync(join(__dirname, '..', '..', '..', 'frontend'))) {
-    if (!existsSync(devPath)) mkdirSync(devPath, { recursive: true });
-    return devPath;
-  }
-  const devPath2 = join(__dirname, '..', '..', 'frontend', 'assets', 'uploads');
-  if (existsSync(join(__dirname, '..', '..', 'frontend'))) {
-    if (!existsSync(devPath2)) mkdirSync(devPath2, { recursive: true });
-    return devPath2;
-  }
-  const prodPath = join(__dirname, '..', 'public', 'assets', 'uploads');
-  if (!existsSync(prodPath)) mkdirSync(prodPath, { recursive: true });
-  return prodPath;
-}
+import { getUploadDir } from '../common/utils/upload.utils';
 
 @Controller('upload')
 export class UploadController {

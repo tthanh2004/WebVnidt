@@ -2,12 +2,17 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as express from 'express';
+import { getUploadDir } from './common/utils/upload.utils';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   // Enable CORS
   app.enableCors();
+
+  // Serve static assets from uploads directory
+  app.use('/assets/uploads', express.static(getUploadDir()));
 
   // Global Validation
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));

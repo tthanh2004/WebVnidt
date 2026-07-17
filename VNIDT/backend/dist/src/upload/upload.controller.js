@@ -17,25 +17,7 @@ const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const auth_guard_1 = require("../auth/auth.guard");
 const path_1 = require("path");
-const fs_1 = require("fs");
-function getUploadDir() {
-    const devPath = (0, path_1.join)(__dirname, '..', '..', '..', 'frontend', 'assets', 'uploads');
-    if ((0, fs_1.existsSync)((0, path_1.join)(__dirname, '..', '..', '..', 'frontend'))) {
-        if (!(0, fs_1.existsSync)(devPath))
-            (0, fs_1.mkdirSync)(devPath, { recursive: true });
-        return devPath;
-    }
-    const devPath2 = (0, path_1.join)(__dirname, '..', '..', 'frontend', 'assets', 'uploads');
-    if ((0, fs_1.existsSync)((0, path_1.join)(__dirname, '..', '..', 'frontend'))) {
-        if (!(0, fs_1.existsSync)(devPath2))
-            (0, fs_1.mkdirSync)(devPath2, { recursive: true });
-        return devPath2;
-    }
-    const prodPath = (0, path_1.join)(__dirname, '..', 'public', 'assets', 'uploads');
-    if (!(0, fs_1.existsSync)(prodPath))
-        (0, fs_1.mkdirSync)(prodPath, { recursive: true });
-    return prodPath;
-}
+const upload_utils_1 = require("../common/utils/upload.utils");
 let UploadController = class UploadController {
     uploadImage(file) {
         if (!file) {
@@ -59,7 +41,7 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: {
             destination: (req, file, cb) => {
-                cb(null, getUploadDir());
+                cb(null, (0, upload_utils_1.getUploadDir)());
             },
             filename: (req, file, cb) => {
                 const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e6);
@@ -106,7 +88,7 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: {
             destination: (req, file, cb) => {
-                cb(null, getUploadDir());
+                cb(null, (0, upload_utils_1.getUploadDir)());
             },
             filename: (req, file, cb) => {
                 const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e6);
