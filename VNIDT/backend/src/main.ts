@@ -4,6 +4,24 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as express from 'express';
 import { getUploadDir } from './common/utils/upload.utils';
+import { join } from 'path';
+import { existsSync } from 'fs';
+
+function getFrontendRoot(): string {
+  const prodPath = join(__dirname, '..', 'public');
+  if (existsSync(prodPath)) {
+    return prodPath;
+  }
+  const path1 = join(__dirname, '..', '..', '..', 'frontend');
+  if (existsSync(path1)) {
+    return path1;
+  }
+  const path2 = join(__dirname, '..', '..', 'frontend');
+  if (existsSync(path2)) {
+    return path2;
+  }
+  return prodPath;
+}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +31,24 @@ async function bootstrap() {
 
   // Serve static assets from uploads directory
   app.use('/assets/uploads', express.static(getUploadDir()));
+
+  // Custom redirects for admin URLs
+  app.use((req: any, res: any, next: any) => {
+    const urlPath = req.path;
+    if (urlPath === '/admin.login') {
+      return res.sendFile(join(getFrontendRoot(), 'login.html'));
+    }
+    if (urlPath === '/crudadmin') {
+      return res.sendFile(join(getFrontendRoot(), 'admin.html'));
+    }
+    if (urlPath === '/login.html' || urlPath === '/login') {
+      return res.redirect(301, '/admin.login');
+    }
+    if (urlPath === '/admin.html' || urlPath === '/admin') {
+      return res.redirect(301, '/crudadmin');
+    }
+    next();
+  });
 
   // Global Validation
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));

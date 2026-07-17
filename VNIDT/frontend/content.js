@@ -252,7 +252,7 @@
           body: JSON.stringify({ content: content })
         });
         if (res.status === 401) {
-          window.location.href = 'login.html';
+          window.location.href = '/admin.login';
           return { success: false, message: 'Hết phiên đăng nhập' };
         }
         return await res.json();

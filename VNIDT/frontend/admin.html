@@ -297,7 +297,7 @@
   <script>
     const token = localStorage.getItem('vnidt_cms_token');
     if (!token) {
-      window.location.href = 'login.html';
+      window.location.href = '/admin.login';
     }
   </script>
 </head>
@@ -350,6 +350,19 @@
       <div class="modal__actions">
         <button class="btn btn--secondary" id="deleteCancel">Hủy</button>
         <button class="btn btn--danger" id="deleteConfirm">Xác nhận xóa</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DETAIL VIEW MODAL ── -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal" style="max-width: 550px; width: 90%;">
+      <h3 class="modal__title" id="detailModalTitle">Chi tiết</h3>
+      <div id="detailModalBody" style="line-height: 1.6; font-size: 14px; color: var(--text-primary); margin: 16px 0; max-height: 400px; overflow-y: auto; text-align: left;">
+        <!-- Content will be injected dynamically -->
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--secondary" id="detailModalCloseBtn">Đóng</button>
       </div>
     </div>
   </div>
@@ -532,6 +545,16 @@
     var currentSection = 'projects';
     var hasUnsaved = false;
     var content = await CMS.getContentAsync();
+
+    // ── Detail View Modal Logic ──
+    function showDetailModal(title, htmlContent) {
+      document.getElementById('detailModalTitle').innerText = title;
+      document.getElementById('detailModalBody').innerHTML = htmlContent;
+      document.getElementById('detailModal').classList.add('show');
+    }
+    document.getElementById('detailModalCloseBtn').addEventListener('click', function() {
+      document.getElementById('detailModal').classList.remove('show');
+    });
 
     // ── Delete Confirmation Dialog Logic ──
     var deleteCallback = null;
@@ -730,6 +753,7 @@
         var res = await fetch('/api/projects');
         var resData = await res.json();
         if (resData.success) {
+          window.currentProjects = resData.data;
           var html = '';
           resData.data.forEach(function(p) {
             var imgUrl = p.imageUrl || '';
@@ -746,14 +770,34 @@
                     '<td style="padding: 12px 16px;">' + imgTag + '</td>' +
                     '<td style="padding: 12px 16px;"><span class="field__badge field__badge--text">' + escapedTag + '</span></td>' +
                     '<td style="padding: 12px 16px; font-weight:600">' + escapedName + '</td>' +
-                    '<td style="padding: 12px 16px; color:var(--text-secondary)">' + escapedDesc + '</td>' +
-                    '<td style="padding: 12px 16px;">' +
+                    '<td style="padding: 12px 16px; color:var(--text-secondary); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="' + escapedDesc + '">' + escapedDesc + '</td>' +
+                    '<td style="padding: 12px 16px; white-space: nowrap;">' +
+                    '<button class="btn btn--ghost btnViewProject" data-id="'+p.id+'" style="padding: 6px; color:var(--text-secondary); margin-right: 8px;" title="Xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>' +
                     '<button class="btn btn--ghost btnEditProject" data-id="'+p.id+'" data-tag="'+escapedTag+'" data-name="'+escapedName+'" data-desc="'+escapedDesc+'" data-image="'+escapedImgUrl+'" data-attach-url="'+escapedAttachUrl+'" data-attach-name="'+escapedAttachName+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
                     '<button class="btn btn--ghost btnDeleteProject" data-id="'+p.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
           tbody.innerHTML = html || '<tr><td colspan="5" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có dự án nào.</td></tr>';
           
+          // Bind view events
+          document.querySelectorAll('.btnViewProject').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              var id = this.getAttribute('data-id');
+              var project = window.currentProjects.find(function(p) { return p.id == id; });
+              if (project) {
+                var contentHtml = 
+                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
+                    '<div><strong>Tên dự án:</strong> ' + escapeHTML(project.name) + '</div>' +
+                    '<div><strong>Nhãn phân loại:</strong> <span class="field__badge field__badge--text">' + escapeHTML(project.tag) + '</span></div>' +
+                    '<div><strong>Tệp đính kèm:</strong> ' + (project.attachmentName ? ('<a href="' + escapeHTML(project.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(project.attachmentName) + '</a>') : 'Không có') + '</div>' +
+                    '<div style="margin-top:8px;"><strong>Mô tả chi tiết:</strong></div>' +
+                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(project.description) + '</div>' +
+                  '</div>';
+                showDetailModal('Chi tiết dự án', contentHtml);
+              }
+            });
+          });
+
           // Bind edit events
           document.querySelectorAll('.btnEditProject').forEach(function(btn) {
             btn.addEventListener('click', function(e) {
@@ -839,6 +883,7 @@
         var res = await fetch('/api/news');
         var resData = await res.json();
         if (resData.success) {
+          window.currentNews = resData.data;
           var html = '';
           resData.data.forEach(function(n) {
             var dateStr = new Date(n.publishedAt).toLocaleString('vi-VN');
@@ -859,11 +904,12 @@
             
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
                     '<td style="padding: 12px 16px; color:var(--text-muted)">' + escapedDateStr + '</td>' +
-                    '<td style="padding: 12px 16px; font-weight:600">' + escapedName + '</td>' +
-                    '<td style="padding: 12px 16px; font-family:monospace; font-size:12px; color:var(--text-secondary)">' + escapedSlug + '</td>' +
+                    '<td style="padding: 12px 16px; font-weight:600; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="' + escapedName + '">' + escapedName + '</td>' +
+                    '<td style="padding: 12px 16px; font-family:monospace; font-size:12px; color:var(--text-secondary); max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="' + escapedSlug + '">' + escapedSlug + '</td>' +
                     '<td style="padding: 12px 16px;">' + statusBadge + '</td>' +
                     '<td style="padding: 12px 16px; color:var(--text-muted); font-size:13px">' + escapedAuthorEmail + '</td>' +
-                    '<td style="padding: 12px 16px;">' +
+                    '<td style="padding: 12px 16px; white-space: nowrap;">' +
+                    '<button class="btn btn--ghost btnViewNews" data-id="'+n.id+'" style="padding: 6px; color:var(--text-secondary); margin-right: 8px;" title="Xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>' +
                     '<button class="btn btn--ghost btnEditNews" data-id="'+n.id+'" data-name="'+escapedName+'" data-slug="'+escapedSlug+'" data-status="'+n.status+'" data-desc="'+escapedDesc+'" data-date="'+escapedLocalISO+'" data-attach-url="'+escapedAttachUrl+'" data-attach-name="'+escapedAttachName+'" style="padding: 6px; color:var(--accent); margin-right: 8px;" title="Sửa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
                     '<button class="btn btn--ghost btnDeleteNews" data-id="'+n.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
@@ -904,6 +950,31 @@
               }
               
               document.getElementById('newsModal').classList.add('show');
+            });
+          });
+
+          // Bind view events
+          document.querySelectorAll('.btnViewNews').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              var id = this.getAttribute('data-id');
+              var news = window.currentNews.find(function(n) { return n.id == id; });
+              if (news) {
+                var dateStr = new Date(news.publishedAt).toLocaleString('vi-VN');
+                var statusText = news.status === 'published' ? 'Đã đăng' : 'Nháp';
+                var authorEmail = news.author?.email || 'Hệ thống';
+                var contentHtml = 
+                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
+                    '<div><strong>Tiêu đề:</strong> ' + escapeHTML(news.name) + '</div>' +
+                    '<div><strong>Đường dẫn (Slug):</strong> <code style="background:var(--bg-app); padding:2px 6px; border-radius:4px; font-size:12px;">' + escapeHTML(news.slug) + '</code></div>' +
+                    '<div><strong>Trạng thái:</strong> ' + statusText + '</div>' +
+                    '<div><strong>Người đăng:</strong> ' + escapeHTML(authorEmail) + '</div>' +
+                    '<div><strong>Thời gian đăng:</strong> ' + dateStr + '</div>' +
+                    '<div><strong>Tệp đính kèm:</strong> ' + (news.attachmentName ? ('<a href="' + escapeHTML(news.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(news.attachmentName) + '</a>') : 'Không có') + '</div>' +
+                    '<div style="margin-top:8px;"><strong>Nội dung tóm tắt:</strong></div>' +
+                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(news.description) + '</div>' +
+                  '</div>';
+                showDetailModal('Chi tiết tin tức', contentHtml);
+              }
             });
           });
 
@@ -954,20 +1025,53 @@
             digital: 'Tư vấn chuyển đổi số',
             other: 'Khác',
           };
+          window.currentContacts = resData.data;
           resData.data.forEach(function(c) {
             var dateStr = new Date(c.createdAt).toLocaleString('vi-VN');
             var sectorLabel = sectorLabels[c.sector] || c.sector || 'Chưa chọn';
+            
+            var escapedName = escapeHTML(c.name);
+            var escapedEmail = escapeHTML(c.email);
+            var escapedPhone = escapeHTML(c.phone || '');
+            var escapedOrg = escapeHTML(c.organization || '');
+            var escapedMsg = escapeHTML(c.message);
+            
             html += '<tr style="border-bottom: 1px solid var(--border);">' +
-                    '<td style="padding: 12px 16px; font-weight:600">' + c.name + '</td>' +
-                    '<td style="padding: 12px 16px;">' + c.email + (c.phone ? '<br><small style="color:var(--text-muted)">' + c.phone + '</small>' : '') + '</td>' +
-                    '<td style="padding: 12px 16px; color:var(--text-secondary)">' + (c.organization || '<i style="color:var(--text-muted)">Không có</i>') + '</td>' +
+                    '<td style="padding: 12px 16px; font-weight:600">' + escapedName + '</td>' +
+                    '<td style="padding: 12px 16px;">' + escapedEmail + (escapedPhone ? '<br><small style="color:var(--text-muted)">' + escapedPhone + '</small>' : '') + '</td>' +
+                    '<td style="padding: 12px 16px; color:var(--text-secondary); max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="' + escapedOrg + '">' + (escapedOrg || '<i style="color:var(--text-muted)">Không có</i>') + '</td>' +
                     '<td style="padding: 12px 16px;"><span class="field__badge field__badge--html">' + sectorLabel + '</span></td>' +
-                    '<td style="padding: 12px 16px; max-width:250px; white-space:pre-wrap; font-size:12.5px">' + c.message + '</td>' +
-                    '<td style="padding: 12px 16px;">' +
+                    '<td style="padding: 12px 16px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px;" title="' + escapedMsg + '">' + escapedMsg + '</td>' +
+                    '<td style="padding: 12px 16px; white-space: nowrap;">' +
+                    '<button class="btn btn--ghost btnViewContact" data-id="'+c.id+'" style="padding: 6px; color:var(--text-secondary); margin-right: 8px;" title="Xem chi tiết"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>' +
                     '<button class="btn btn--ghost btnDeleteContact" data-id="'+c.id+'" style="padding: 6px; color:var(--error);" title="Xóa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>' +
                     '</td></tr>';
           });
           tbody.innerHTML = html || '<tr><td colspan="6" style="padding: 16px; text-align:center; color:var(--text-muted)">Chưa có yêu cầu tư vấn nào.</td></tr>';
+
+          // Bind view events
+          document.querySelectorAll('.btnViewContact').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              var id = this.getAttribute('data-id');
+              var contact = window.currentContacts.find(function(c) { return c.id == id; });
+              if (contact) {
+                var dateStr = new Date(contact.createdAt).toLocaleString('vi-VN');
+                var sectorLabel = sectorLabels[contact.sector] || contact.sector || 'Chưa chọn';
+                var contentHtml = 
+                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
+                    '<div><strong>Họ và tên:</strong> ' + escapeHTML(contact.name) + '</div>' +
+                    '<div><strong>Email:</strong> ' + escapeHTML(contact.email) + '</div>' +
+                    '<div><strong>Số điện thoại:</strong> ' + escapeHTML(contact.phone || 'Chưa cung cấp') + '</div>' +
+                    '<div><strong>Cơ quan/Tổ chức:</strong> ' + escapeHTML(contact.organization || 'Không có') + '</div>' +
+                    '<div><strong>Lĩnh vực quan tâm:</strong> ' + sectorLabel + '</div>' +
+                    '<div><strong>Thời gian gửi:</strong> ' + dateStr + '</div>' +
+                    '<div style="margin-top:8px;"><strong>Nội dung tư vấn:</strong></div>' +
+                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(contact.message) + '</div>' +
+                  '</div>';
+                showDetailModal('Chi tiết yêu cầu tư vấn', contentHtml);
+              }
+            });
+          });
 
           // Bind delete events
           document.querySelectorAll('.btnDeleteContact').forEach(function(btn) {
@@ -1446,7 +1550,7 @@
     document.getElementById('btnLogout').addEventListener('click', function () {
       localStorage.removeItem('vnidt_cms_token');
       localStorage.removeItem('vnidt_cms_user');
-      window.location.href = 'login.html';
+      window.location.href = '/admin.login';
     });
 
   })();

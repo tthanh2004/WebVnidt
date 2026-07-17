@@ -225,7 +225,7 @@
         localStorage.setItem('vnidt_cms_user', JSON.stringify(data.user));
 
         // Redirect to admin panel
-        window.location.href = 'admin.html';
+        window.location.href = '/crudadmin';
         
       } catch (err) {
         errorMsg.textContent = err.message;
@@ -240,7 +240,7 @@
 
     // Auto redirect if already logged in
     if (localStorage.getItem('vnidt_cms_token')) {
-      window.location.href = 'admin.html';
+      window.location.href = '/crudadmin';
     }
   </script>
 

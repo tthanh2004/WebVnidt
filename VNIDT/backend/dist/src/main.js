@@ -39,10 +39,43 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const express = __importStar(require("express"));
 const upload_utils_1 = require("./common/utils/upload.utils");
+const path_1 = require("path");
+const fs_1 = require("fs");
+function getFrontendRoot() {
+    const prodPath = (0, path_1.join)(__dirname, '..', 'public');
+    if ((0, fs_1.existsSync)(prodPath)) {
+        return prodPath;
+    }
+    const path1 = (0, path_1.join)(__dirname, '..', '..', '..', 'frontend');
+    if ((0, fs_1.existsSync)(path1)) {
+        return path1;
+    }
+    const path2 = (0, path_1.join)(__dirname, '..', '..', 'frontend');
+    if ((0, fs_1.existsSync)(path2)) {
+        return path2;
+    }
+    return prodPath;
+}
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
     app.use('/assets/uploads', express.static((0, upload_utils_1.getUploadDir)()));
+    app.use((req, res, next) => {
+        const urlPath = req.path;
+        if (urlPath === '/admin.login') {
+            return res.sendFile((0, path_1.join)(getFrontendRoot(), 'login.html'));
+        }
+        if (urlPath === '/crudadmin') {
+            return res.sendFile((0, path_1.join)(getFrontendRoot(), 'admin.html'));
+        }
+        if (urlPath === '/login.html' || urlPath === '/login') {
+            return res.redirect(301, '/admin.login');
+        }
+        if (urlPath === '/admin.html' || urlPath === '/admin') {
+            return res.redirect(301, '/crudadmin');
+        }
+        next();
+    });
     app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true, transform: true }));
     const config = new swagger_1.DocumentBuilder()
         .setTitle('VNiDT CMS API')
