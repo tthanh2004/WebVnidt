@@ -786,13 +786,26 @@
               var project = window.currentProjects.find(function(p) { return p.id == id; });
               if (project) {
                 var contentHtml = 
-                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
-                    '<div><strong>Tên dự án:</strong> ' + escapeHTML(project.name) + '</div>' +
-                    '<div><strong>Nhãn phân loại:</strong> <span class="field__badge field__badge--text">' + escapeHTML(project.tag) + '</span></div>' +
-                    '<div><strong>Tệp đính kèm:</strong> ' + (project.attachmentName ? ('<a href="' + escapeHTML(project.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(project.attachmentName) + '</a>') : 'Không có') + '</div>' +
-                    '<div style="margin-top:8px;"><strong>Mô tả chi tiết:</strong></div>' +
-                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(project.description) + '</div>' +
-                  '</div>';
+                  '<table style="width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;">' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Tên dự án:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(project.name) + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Nhãn phân loại:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;"><span class="field__badge field__badge--text">' + escapeHTML(project.tag) + '</span></td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Tệp đính kèm:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' +
+                        (project.attachmentName ? ('<a href="' + escapeHTML(project.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(project.attachmentName) + '</a>') : 'Không có') +
+                      '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Mô tả chi tiết:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word; white-space:pre-wrap; line-height:1.5;">' + escapeHTML(project.description) + '</td>' +
+                    '</tr>' +
+                  '</table>';
                 showDetailModal('Chi tiết dự án', contentHtml);
               }
             });
@@ -963,16 +976,38 @@
                 var statusText = news.status === 'published' ? 'Đã đăng' : 'Nháp';
                 var authorEmail = news.author?.email || 'Hệ thống';
                 var contentHtml = 
-                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
-                    '<div><strong>Tiêu đề:</strong> ' + escapeHTML(news.name) + '</div>' +
-                    '<div><strong>Đường dẫn (Slug):</strong> <code style="background:var(--bg-app); padding:2px 6px; border-radius:4px; font-size:12px;">' + escapeHTML(news.slug) + '</code></div>' +
-                    '<div><strong>Trạng thái:</strong> ' + statusText + '</div>' +
-                    '<div><strong>Người đăng:</strong> ' + escapeHTML(authorEmail) + '</div>' +
-                    '<div><strong>Thời gian đăng:</strong> ' + dateStr + '</div>' +
-                    '<div><strong>Tệp đính kèm:</strong> ' + (news.attachmentName ? ('<a href="' + escapeHTML(news.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(news.attachmentName) + '</a>') : 'Không có') + '</div>' +
-                    '<div style="margin-top:8px;"><strong>Nội dung tóm tắt:</strong></div>' +
-                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(news.description) + '</div>' +
-                  '</div>';
+                  '<table style="width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;">' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Tiêu đề:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(news.name) + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Đường dẫn (Slug):</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;"><code style="background:var(--bg-app); padding:2px 6px; border-radius:4px; font-size:12px;">' + escapeHTML(news.slug) + '</code></td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Trạng thái:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + statusText + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Người đăng:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(authorEmail) + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Thời gian đăng:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + dateStr + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Tệp đính kèm:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' +
+                        (news.attachmentName ? ('<a href="' + escapeHTML(news.attachmentUrl) + '" target="_blank" style="color:var(--accent); text-decoration:underline;">' + escapeHTML(news.attachmentName) + '</a>') : 'Không có') +
+                      '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Nội dung tóm tắt:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word; white-space:pre-wrap; line-height:1.5;">' + escapeHTML(news.description) + '</td>' +
+                    '</tr>' +
+                  '</table>';
                 showDetailModal('Chi tiết tin tức', contentHtml);
               }
             });
@@ -1058,16 +1093,36 @@
                 var dateStr = new Date(contact.createdAt).toLocaleString('vi-VN');
                 var sectorLabel = sectorLabels[contact.sector] || contact.sector || 'Chưa chọn';
                 var contentHtml = 
-                  '<div style="display:flex; flex-direction:column; gap:12px;">' +
-                    '<div><strong>Họ và tên:</strong> ' + escapeHTML(contact.name) + '</div>' +
-                    '<div><strong>Email:</strong> ' + escapeHTML(contact.email) + '</div>' +
-                    '<div><strong>Số điện thoại:</strong> ' + escapeHTML(contact.phone || 'Chưa cung cấp') + '</div>' +
-                    '<div><strong>Cơ quan/Tổ chức:</strong> ' + escapeHTML(contact.organization || 'Không có') + '</div>' +
-                    '<div><strong>Lĩnh vực quan tâm:</strong> ' + sectorLabel + '</div>' +
-                    '<div><strong>Thời gian gửi:</strong> ' + dateStr + '</div>' +
-                    '<div style="margin-top:8px;"><strong>Nội dung tư vấn:</strong></div>' +
-                    '<div style="background:var(--bg-app); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); white-space:pre-wrap; max-height:200px; overflow-y:auto;">' + escapeHTML(contact.message) + '</div>' +
-                  '</div>';
+                  '<table style="width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;">' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Họ và tên:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(contact.name) + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Email:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(contact.email) + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Số điện thoại:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(contact.phone || 'Chưa cung cấp') + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Cơ quan/Tổ chức:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + escapeHTML(contact.organization || 'Không có') + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Lĩnh vực quan tâm:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + sectorLabel + '</td>' +
+                    '</tr>' +
+                    '<tr style="border-bottom: 1px solid var(--border);">' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Thời gian gửi:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word;">' + dateStr + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<td style="padding:10px 8px; font-weight:600; width:130px; color:var(--text-secondary); vertical-align:top;">Nội dung tư vấn:</td>' +
+                      '<td style="padding:10px 8px; color:var(--text-primary); vertical-align:top; word-break:break-word; white-space:pre-wrap; line-height:1.5;">' + escapeHTML(contact.message) + '</td>' +
+                    '</tr>' +
+                  '</table>';
                 showDetailModal('Chi tiết yêu cầu tư vấn', contentHtml);
               }
             });

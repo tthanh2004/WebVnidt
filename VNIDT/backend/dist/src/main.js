@@ -69,10 +69,10 @@ async function bootstrap() {
             return res.sendFile((0, path_1.join)(getFrontendRoot(), 'admin.html'));
         }
         if (urlPath === '/login.html' || urlPath === '/login') {
-            return res.redirect(301, '/admin.login');
+            return res.redirect(302, '/admin.login');
         }
         if (urlPath === '/admin.html' || urlPath === '/admin') {
-            return res.redirect(301, '/crudadmin');
+            return res.redirect(302, '/crudadmin');
         }
         next();
     });
